@@ -1,12 +1,11 @@
 import React from "react";
-import { Layout } from "../components/shared/Layout";
-import { Typography } from "@mui/material";
+import { Box, Typography } from "@mui/material";
 
 const AddPlan = () => {
   return (
-    <Layout>
+    <Box component="main">
       <Typography>Add Plan</Typography>
-    </Layout>
+    </Box>
   );
 };
 

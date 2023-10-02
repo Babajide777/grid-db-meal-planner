@@ -1,7 +1,8 @@
+import { Box } from "@mui/material";
 import React from "react";
 
 const SideNav = () => {
-  return <div>SideNav</div>;
+  return <Box component="aside">SideNav</Box>;
 };
 
 export default SideNav;

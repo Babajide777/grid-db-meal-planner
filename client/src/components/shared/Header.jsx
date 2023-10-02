@@ -1,7 +1,8 @@
+import { Box } from "@mui/material";
 import React from "react";
 
 const Header = () => {
-  return <div>Header</div>;
+  return <Box component="nav">Header</Box>;
 };
 
 export default Header;
