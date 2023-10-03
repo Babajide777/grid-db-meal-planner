@@ -1,21 +1,23 @@
-import React from "react";
-import "@fontsource/roboto/300.css";
-import "@fontsource/roboto/400.css";
-import "@fontsource/roboto/500.css";
-import "@fontsource/roboto/700.css";
-import { CssBaseline, ThemeProvider } from "@mui/material";
-import theme from "./config/theme";
-import { Route, Routes } from "react-router-dom";
-import PlanList from "./pages/PlanList";
-import AddPlan from "./pages/AddPlan";
-import PlanDetails from "./pages/PlanDetails";
-import NotFound from "./components/shared/NotFound";
-import { Layout } from "./components/shared/Layout";
+import React from "react"
+import "@fontsource/roboto/300.css"
+import "@fontsource/roboto/400.css"
+import "@fontsource/roboto/500.css"
+import "@fontsource/roboto/700.css"
+import { CssBaseline, ThemeProvider } from "@mui/material"
+import theme from "./config/theme"
+import { Route, Routes } from "react-router-dom"
+import PlanList from "./pages/PlanList"
+import AddPlan from "./pages/AddPlan"
+import PlanDetails from "./pages/PlanDetails"
+import NotFound from "./components/shared/NotFound"
+import { Layout } from "./components/shared/Layout"
+// import Header from "./components/shared/Header"
 
 function App() {
   return (
     <>
       <ThemeProvider theme={theme}>
+        {console.log(theme.palette.gradient.main)}
         <CssBaseline />
         <Layout>
           <Routes>
@@ -27,7 +29,7 @@ function App() {
         </Layout>
       </ThemeProvider>
     </>
-  );
+  )
 }
 
-export default App;
+export default App
