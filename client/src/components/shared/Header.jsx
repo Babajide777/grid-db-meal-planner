@@ -16,12 +16,20 @@ import theme from "../../config/theme"
 const Appstyle = styled(AppBar)(({ theme }) => ({
   backgroundColor: "white",
   padding: "0 10px",
-  width: "85%"
+  width: "85%",
+  [theme.breakpoints.down("md")]: {
+    width: "100%",
+    padding: "15px 0",
+    border: "0"
+  }
 }))
 
 const StyledToolbar = styled(Toolbar)({
   display: "flex",
-  justifyContent: "flex-end"
+  justifyContent: "flex-end",
+  [theme.breakpoints.down("md")]: {
+    justifyContent: "center"
+  }
 })
 
 const Search = styled("div")(({ theme }) => ({
@@ -29,7 +37,11 @@ const Search = styled("div")(({ theme }) => ({
   padding: "0 10px",
   border: "2px solid rgba(173, 173, 173, 1)",
   borderRadius: "30px",
-  width: "40%"
+  width: "40%",
+  [theme.breakpoints.down("md")]: {
+    width: "90%",
+    padding: "5px 10px"
+  }
 }))
 
 const Icons = styled(Box)(({ theme }) => ({
@@ -37,7 +49,10 @@ const Icons = styled(Box)(({ theme }) => ({
   alignItems: "center",
   padding: "0 30px",
   marginLeft: "50px",
-  gap: "20px"
+  gap: "20px",
+  [theme.breakpoints.down("md")]: {
+    display: "none"
+  }
 }))
 
 const StyledBadge = styled(Badge)(({ theme }) => ({
