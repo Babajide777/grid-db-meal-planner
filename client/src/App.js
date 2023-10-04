@@ -11,13 +11,11 @@ import AddPlan from "./pages/AddPlan"
 import PlanDetails from "./pages/PlanDetails"
 import NotFound from "./components/shared/NotFound"
 import { Layout } from "./components/shared/Layout"
-// import Header from "./components/shared/Header"
 
 function App() {
   return (
     <>
       <ThemeProvider theme={theme}>
-        {console.log(theme.palette.gradient.main)}
         <CssBaseline />
         <Layout>
           <Routes>
