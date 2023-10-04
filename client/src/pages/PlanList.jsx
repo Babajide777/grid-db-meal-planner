@@ -1,10 +1,13 @@
 import React from "react";
-import { Box, Typography } from "@mui/material";
+import { Box } from "@mui/material";
+import Plan from "../components/Plan";
 
 const PlanList = () => {
   return (
     <Box component="main">
-      <Typography>Plan List</Typography>
+      <Box component="section">
+        <Plan planName="Jide" lastUpdated="2 minutes" />
+      </Box>
     </Box>
   );
 };
