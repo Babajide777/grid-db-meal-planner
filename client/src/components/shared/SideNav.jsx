@@ -2,7 +2,7 @@ import { Box } from "@mui/material"
 import React from "react"
 
 const SideNav = () => {
-  return <Box flex={1} component="aside"></Box>
+  return <Box component="aside">SideNav</Box>
 }
 
 export default SideNav
