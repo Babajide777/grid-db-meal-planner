@@ -1,7 +1,7 @@
-import React from "react";
-import SideNav from "./SideNav";
-import { Box } from "@mui/material";
-import Header from "./Header";
+import React from "react"
+import SideNav from "./SideNav"
+import { Box } from "@mui/material"
+import Header from "./Header"
 
 export const Layout = ({ children }) => {
   return (
@@ -12,5 +12,5 @@ export const Layout = ({ children }) => {
         {children}
       </Box>
     </>
-  );
-};
+  )
+}
