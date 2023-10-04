@@ -9,10 +9,9 @@ const Plan = ({ planName, lastUpdated }) => {
         {singlePlanIcon()}
         <Box>
           <Typography variant="h6">{planName}</Typography>
-          <Typography>Last edit was {lastUpdated}</Typography>
+          <Typography>Last edit was {lastUpdated} ago</Typography>
         </Box>
       </Box>
-
       <Box>
         <Box>
           {editIcon()}
