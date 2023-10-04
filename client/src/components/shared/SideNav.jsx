@@ -13,7 +13,16 @@ import React from "react"
 
 const Typomenu = styled(Typography)(({ theme }) => ({
   fontSize: "1rem",
-  fontWeight: "300"
+  fontWeight: "300",
+  [theme.breakpoints.down("md")]: {
+    display: "none"
+  }
+}))
+
+const Listul = styled(List)(({ theme }) => ({ theme }) => ({
+  [theme.breakpoints.down("md")]: {
+    display: "none"
+  }
 }))
 
 const Cookstyle = styled("div")(({ theme }) => ({
@@ -22,8 +31,13 @@ const Cookstyle = styled("div")(({ theme }) => ({
   alignItems: "center",
   backgroundColor: "rgba(12, 19, 37, 1)",
   color: "rgba(255, 255, 255, 1)",
-  padding: "0 50px",
-  height: "150px"
+  minwidth: "100%",
+  height: "150px",
+  fontSize: "1.5rem",
+  [theme.breakpoints.down("md")]: {
+    height: "100px",
+    fontSize: "1rem"
+  }
 }))
 
 const SideNav = () => {
@@ -32,9 +46,10 @@ const SideNav = () => {
       <Box
         position="fixed"
         sx={{
-          height: "100vh",
+          height: { xs: "none", md: "100vh" },
           borderRight: 2,
-          borderColor: "rgba(228, 227, 231, 1)"
+          borderColor: "rgba(228, 227, 231, 1)",
+          width: { xs: "100%", md: "15%" }
         }}
       >
         <Cookstyle>
@@ -51,7 +66,7 @@ const SideNav = () => {
         >
           MENU
         </Typomenu>
-        <List
+        <Listul
           sx={{
             backgroundColor: "rgba(236, 248, 242, 1)",
             borderRight: 3,
@@ -73,7 +88,7 @@ const SideNav = () => {
               />
             </ListItemButton>
           </ListItem>
-        </List>
+        </Listul>
       </Box>
     </Box>
   )
