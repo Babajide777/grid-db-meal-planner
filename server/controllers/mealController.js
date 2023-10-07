@@ -1,11 +1,10 @@
 const { mealPlanValidation } = require("../utils/validation");
-import * as GridDB from "../config/db";
-import { responseHandler } from "../utils/responseHandler";
+const { initGridDbTS, insert } = require("../config/db");
+const { responseHandler } = require("../utils/responseHandler");
 const { v4: uuidv4 } = require("uuid");
 
-const { collectionDb, store, conInfo } = await GridDB.initGridDbTS();
-
 const addMeal = async (req, res) => {
+  const { collectionDb, store, conInfo } = await initGridDbTS();
   //validate req.body
 
   const { details } = await mealPlanValidation(req.body);
@@ -46,7 +45,7 @@ const addMeal = async (req, res) => {
       snack3,
     ];
 
-    const saveStatus = await GridDB.insert(data, collectionDb);
+    const saveStatus = await insert(data, collectionDb);
 
     return saveStatus.status
       ? responseHandler(res, "Meal plan saved successfully", 201, true, "")
