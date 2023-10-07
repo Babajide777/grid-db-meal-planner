@@ -1,6 +1,16 @@
-const { addMeal } = require("../controllers/mealController");
+const {
+  addMeal,
+  getAllMeals,
+  deleteMeal,
+  editMeal,
+  mealDetails,
+} = require("../controllers/mealController");
 const router = require("express").Router();
 
-router.get("/add-meal", addMeal);
+router.post("/add-meal", addMeal);
+router.get("/meal-detail", mealDetails);
+router.put("/edit-meal", editMeal);
+router.delete("/delete-meal", deleteMeal);
+router.get("/all-meals", getAllMeals);
 
 module.exports = router;

@@ -10,6 +10,18 @@ const addMeal = async (req, res) => {
   }
 };
 
+const mealDetails = async (req, res) => {};
+
+const editMeal = async (req, res) => {};
+
+const deleteMeal = async (req, res) => {};
+
+const getAllMeals = async (req, res) => {};
+
 module.exports = {
   addMeal,
+  mealDetails,
+  editMeal,
+  deleteMeal,
+  getAllMeals,
 };
