@@ -1,4 +1,9 @@
 const { mealPlanValidation } = require("../utils/validation");
+import * as GridDB from "../config/db";
+import { responseHandler } from "../utils/responseHandler";
+const { v4: uuidv4 } = require("uuid");
+
+const { collectionDb, store, conInfo } = await GridDB.initGridDbTS();
 
 const addMeal = async (req, res) => {
   //validate req.body
@@ -7,6 +12,53 @@ const addMeal = async (req, res) => {
   if (details) {
     let allErrors = details.map((detail) => detail.message.replace(/"/g, ""));
     return responseHandler(res, allErrors, 400, false, "");
+  }
+
+  try {
+    const {
+      title,
+      calories,
+      fat,
+      cabs,
+      protein,
+      days,
+      breakfast,
+      lunch,
+      dinner,
+      snack1,
+      snack2,
+      snack3,
+    } = req.body;
+
+    const data = [
+      uuidv4(),
+      title,
+      calories,
+      fat,
+      cabs,
+      protein,
+      days,
+      breakfast,
+      lunch,
+      dinner,
+      snack1,
+      snack2,
+      snack3,
+    ];
+
+    const saveStatus = await GridDB.insert(data, collectionDb);
+
+    return saveStatus.status
+      ? responseHandler(res, "Meal plan saved successfully", 201, true, "")
+      : responseHandler(
+          res,
+          "Unable to save meal plan",
+          400,
+          false,
+          saveStatus.error
+        );
+  } catch (error) {
+    responseHandler(res, "Error saving meal plan", 400, false, error);
   }
 };
 
