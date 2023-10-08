@@ -23,12 +23,12 @@ function initContainer() {
   const conInfo = new griddb.ContainerInfo({
     name: containerName,
     columnInfoList: [
-      ["id", griddb.Type.INTEGER],
+      ["id", griddb.Type.STRING],
       ["title", griddb.Type.STRING],
-      ["calories", griddb.Type.STRING],
-      ["fat", griddb.Type.INTEGER],
-      ["cabs", griddb.Type.STRING],
-      ["protein", griddb.Type.INTEGER],
+      ["calories", griddb.Type.DOUBLE],
+      ["fat", griddb.Type.DOUBLE],
+      ["cabs", griddb.Type.DOUBLE],
+      ["protein", griddb.Type.DOUBLE],
       ["days", griddb.Type.STRING_ARRAY],
       ["breakfast", griddb.Type.STRING],
       ["lunch", griddb.Type.STRING],
