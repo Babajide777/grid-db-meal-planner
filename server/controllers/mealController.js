@@ -5,6 +5,7 @@ const {
   queryByID,
   queryAll,
   deleteByID,
+  editByID,
 } = require("../config/db");
 const { responseHandler } = require("../utils/responseHandler");
 const { v4: uuidv4 } = require("uuid");
@@ -89,7 +90,52 @@ const mealPlanDetails = async (req, res) => {
     : responseHandler(res, "No result found", 400, false, "");
 };
 
-const editMealPlan = async (req, res) => {};
+const editMealPlan = async (req, res) => {
+  const { id } = req.params;
+
+  const {
+    title,
+    calories,
+    fat,
+    cabs,
+    protein,
+    days,
+    breakfast,
+    lunch,
+    dinner,
+    snack1,
+    snack2,
+    snack3,
+  } = req.body;
+
+  const data = [
+    id,
+    title,
+    calories,
+    fat,
+    cabs,
+    protein,
+    days.join(";"),
+    breakfast,
+    lunch,
+    dinner,
+    snack1,
+    snack2,
+    snack3,
+  ];
+
+  const check = await editByID(store, conInfo, data);
+
+  return check[0]
+    ? responseHandler(
+        res,
+        "meal plan edited successfully",
+        200,
+        true,
+        result[1]
+      )
+    : responseHandler(res, "Error editing meal plan", 400, false, "");
+};
 
 const deleteMealPlan = async (req, res) => {
   const { id } = req.params;

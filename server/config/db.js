@@ -214,6 +214,19 @@ const deleteByID = async (store, id, conInfo) => {
   }
 };
 
+const editByID = async (store, conInfo, data) => {
+  try {
+    const cont = await store.putContainer(conInfo);
+    const res = await cont.put(data);
+    console.log(res);
+    return [true, res];
+  } catch (err) {
+    console.log("update row error: ", err);
+
+    return [false, err];
+  }
+};
+
 module.exports = {
   initStore,
   initContainer,
@@ -227,4 +240,5 @@ module.exports = {
   containerName,
   queryByID,
   deleteByID,
+  editByID,
 };
