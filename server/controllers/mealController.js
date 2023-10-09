@@ -30,8 +30,10 @@ const addMeal = async (req, res) => {
       snack3,
     } = req.body;
 
+    const id = uuidv4();
+
     const data = [
-      uuidv4(),
+      id,
       title,
       calories,
       fat,
@@ -48,15 +50,24 @@ const addMeal = async (req, res) => {
 
     const saveStatus = await insert(data, collectionDb);
 
-    return saveStatus.status
-      ? responseHandler(res, "Meal plan saved successfully", 201, true, "")
-      : responseHandler(
-          res,
-          "Unable to save meal plan",
-          400,
-          false,
-          saveStatus.error
-        );
+    if (saveStatus.status) {
+      const result = await queryByID(id, conInfo, store);
+      return responseHandler(
+        res,
+        "Meal plan saved successfully",
+        201,
+        true,
+        result
+      );
+    }
+
+    return responseHandler(
+      res,
+      "Unable to save meal plan",
+      400,
+      false,
+      saveStatus.error
+    );
   } catch (error) {
     responseHandler(res, "Error saving meal plan", 400, false, error);
   }
