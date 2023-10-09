@@ -11,7 +11,9 @@ const addMeal = async (req, res) => {
   if (details) {
     let allErrors = details.map((detail) => detail.message.replace(/"/g, ""));
     return responseHandler(res, allErrors, 400, false, "");
-  }
+  }  
+	
+
 
   try {
     const {
@@ -36,7 +38,7 @@ const addMeal = async (req, res) => {
       fat,
       cabs,
       protein,
-      days,
+      "jide",
       breakfast,
       lunch,
       dinner,
@@ -47,6 +49,11 @@ const addMeal = async (req, res) => {
 
     const saveStatus = await insert(data, collectionDb);
 
+	 console.log(saveStatus)
+
+	  console.log(saveStatus.error, "error")
+
+	  		
     return saveStatus.status
       ? responseHandler(res, "Meal plan saved successfully", 201, true, "")
       : responseHandler(
