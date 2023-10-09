@@ -1,11 +1,17 @@
 const { mealPlanValidation } = require("../utils/validation");
-const { initGridDbTS, insert, queryByID, queryAll } = require("../config/db");
+const {
+  initGridDbTS,
+  insert,
+  queryByID,
+  queryAll,
+  deleteByID,
+} = require("../config/db");
 const { responseHandler } = require("../utils/responseHandler");
 const { v4: uuidv4 } = require("uuid");
 
 const { collectionDb, store, conInfo } = await initGridDbTS();
 
-const addMeal = async (req, res) => {
+const addMealPlan = async (req, res) => {
   //validate req.body
 
   const { details } = await mealPlanValidation(req.body);
@@ -73,7 +79,7 @@ const addMeal = async (req, res) => {
   }
 };
 
-const mealDetails = async (req, res) => {
+const mealPlanDetails = async (req, res) => {
   const { id } = req.params;
 
   const result = await queryByID(id, conInfo, store);
@@ -83,11 +89,25 @@ const mealDetails = async (req, res) => {
     : responseHandler(res, "No result found", 400, false, "");
 };
 
-const editMeal = async (req, res) => {};
+const editMealPlan = async (req, res) => {};
 
-const deleteMeal = async (req, res) => {};
+const deleteMealPlan = async (req, res) => {
+  const { id } = req.params;
 
-const getAllMeals = async (req, res) => {
+  const result = await deleteByID(store, id, conInfo);
+
+  return result[0]
+    ? responseHandler(
+        res,
+        "meal plan deleted successfully",
+        200,
+        true,
+        result[1]
+      )
+    : responseHandler(res, "Error deleting meal plan", 400, false, "");
+};
+
+const getAllMealPlans = async (req, res) => {
   const result = await queryAll(conInfo, store);
 
   return result.length
@@ -102,9 +122,9 @@ const getAllMeals = async (req, res) => {
 };
 
 module.exports = {
-  addMeal,
-  mealDetails,
-  editMeal,
-  deleteMeal,
-  getAllMeals,
+  addMealPlan,
+  mealPlanDetails,
+  editMealPlan,
+  deleteMealPlan,
+  getAllMealPlans,
 };

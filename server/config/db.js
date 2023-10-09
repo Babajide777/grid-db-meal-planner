@@ -200,6 +200,20 @@ async function dropContainer(store, containerName) {
     });
 }
 
+//Delete entry
+
+const deleteByID = async (store, id, conInfo) => {
+  try {
+    const cont = await store.putContainer(conInfo);
+    let res = await cont.remove(id);
+
+    console.log(res);
+    return [true, res];
+  } catch (error) {
+    return [false, error];
+  }
+};
+
 module.exports = {
   initStore,
   initContainer,
@@ -212,4 +226,5 @@ module.exports = {
   containersInfo,
   containerName,
   queryByID,
+  deleteByID,
 };

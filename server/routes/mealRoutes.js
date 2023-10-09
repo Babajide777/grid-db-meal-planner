@@ -1,16 +1,16 @@
 const {
-  addMeal,
-  getAllMeals,
-  deleteMeal,
-  editMeal,
-  mealDetails,
+  addMealPlan,
+  mealPlanDetails,
+  editMealPlan,
+  deleteMealPlan,
+  getAllMealPlans,
 } = require("../controllers/mealController");
 const router = require("express").Router();
 
-router.post("/add-meal", addMeal);
-router.get("/meal-detail/:id", mealDetails);
-router.put("/edit-meal", editMeal);
-router.delete("/delete-meal", deleteMeal);
-router.get("/all-meals", getAllMeals);
+router.post("/add-meal", addMealPlan);
+router.get("/meal-detail/:id", mealPlanDetails);
+router.put("/edit-meal", editMealPlan);
+router.delete("/delete-meal", deleteMealPlan);
+router.get("/all-meals", getAllMealPlans);
 
 module.exports = router;
