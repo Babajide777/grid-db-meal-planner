@@ -10,10 +10,10 @@ const {
 const { responseHandler } = require("../utils/responseHandler");
 const { v4: uuidv4 } = require("uuid");
 
-const { collectionDb, store, conInfo } = await initGridDbTS();
-
 const addMealPlan = async (req, res) => {
   //validate req.body
+
+  const { collectionDb, store, conInfo } = await initGridDbTS();
 
   const { details } = await mealPlanValidation(req.body);
   if (details) {
@@ -81,6 +81,7 @@ const addMealPlan = async (req, res) => {
 };
 
 const mealPlanDetails = async (req, res) => {
+  const { store, conInfo } = await initGridDbTS();
   const { id } = req.params;
 
   const result = await queryByID(id, conInfo, store);
@@ -91,6 +92,7 @@ const mealPlanDetails = async (req, res) => {
 };
 
 const editMealPlan = async (req, res) => {
+  const { store, conInfo } = await initGridDbTS();
   const { id } = req.params;
 
   const {
@@ -138,6 +140,7 @@ const editMealPlan = async (req, res) => {
 };
 
 const deleteMealPlan = async (req, res) => {
+  const { store, conInfo } = await initGridDbTS();
   const { id } = req.params;
 
   const result = await deleteByID(store, id, conInfo);
@@ -154,6 +157,7 @@ const deleteMealPlan = async (req, res) => {
 };
 
 const getAllMealPlans = async (req, res) => {
+  const { store, conInfo } = await initGridDbTS();
   const result = await queryAll(conInfo, store);
 
   return result.length
