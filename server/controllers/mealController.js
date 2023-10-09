@@ -1,5 +1,5 @@
 const { mealPlanValidation } = require("../utils/validation");
-const { initGridDbTS, insert, queryByID } = require("../config/db");
+const { initGridDbTS, insert, queryByID, queryAll } = require("../config/db");
 const { responseHandler } = require("../utils/responseHandler");
 const { v4: uuidv4 } = require("uuid");
 
@@ -76,7 +76,19 @@ const editMeal = async (req, res) => {};
 
 const deleteMeal = async (req, res) => {};
 
-const getAllMeals = async (req, res) => {};
+const getAllMeals = async (req, res) => {
+  const result = await queryAll(conInfo, store);
+
+  return result.length
+    ? responseHandler(
+        res,
+        "all meal plans in the database successfully retrieved",
+        200,
+        true,
+        result.results
+      )
+    : responseHandler(res, "Unable to retrieve meal plans", 400, false, "");
+};
 
 module.exports = {
   addMeal,
