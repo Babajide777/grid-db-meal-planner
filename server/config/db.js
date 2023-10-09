@@ -29,7 +29,7 @@ function initContainer() {
       ["fat", griddb.Type.DOUBLE],
       ["cabs", griddb.Type.DOUBLE],
       ["protein", griddb.Type.DOUBLE],
-      ["days", griddb.Type.LONG],
+      ["days", griddb.Type.STRING],
       ["breakfast", griddb.Type.STRING],
       ["lunch", griddb.Type.STRING],
       ["dinner", griddb.Type.STRING],
