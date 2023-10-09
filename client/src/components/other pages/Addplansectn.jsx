@@ -1,4 +1,5 @@
 import {
+  Autocomplete,
   Box,
   Button,
   FormControl,
@@ -8,10 +9,9 @@ import {
   Typography,
   styled
 } from "@mui/material"
-import { Days, Meals } from "../assets/data"
-import Addplanbtn from "./Addplanbtn"
-import Addplanmealbtn from "./Addplanmealbtn"
-
+import { Days } from "../assets/data"
+import Paper from "@mui/material/Paper"
+import ClearIcon from "@mui/icons-material/Clear"
 import React from "react"
 
 const Sectionstyle = styled("section")(({ theme }) => ({
@@ -25,18 +25,10 @@ const Sectionstyle = styled("section")(({ theme }) => ({
     paddingLeft: "80px"
   }
 }))
+
 const Divstyle = styled("div")(({ theme }) => ({
   [theme.breakpoints.up("md")]: {
     width: "50%"
-  }
-}))
-const Daystyle = styled("div")(({ theme }) => ({
-  border: "1px solid rgba(214, 214, 214, 1)",
-  borderRadius: "7px",
-  padding: "40px",
-  [theme.breakpoints.up("md")]: {
-    padding: "20px 10px",
-    width: "90%"
   }
 }))
 
@@ -52,27 +44,100 @@ const Addplansectn = () => {
           ></TextField>
         </FormControl>
 
-        <Box sx={{ paddingTop: "30px" }}>
-          <Typography component="p" sx={{ color: "rgba(48, 48, 48, 1)" }}>
-            Days
-          </Typography>
-          <Daystyle>
-            {Days.map((item, i) => (
-              <Addplanbtn key={i} {...item} />
-            ))}
-          </Daystyle>
+        <Box sx={{ margin: "30px 0" }}>
+          <FormLabel sx={{ color: "rgba(48, 48, 48, 1)" }}>Days</FormLabel>
+          <Autocomplete
+            multiple
+            defaultValue={[Days[0], Days[1]]}
+            disablePortal
+            ChipProps={{
+              deleteIcon: <ClearIcon />
+            }}
+            id="combo-box-demo"
+            options={Days}
+            sx={{
+              width: { xs: "100%", md: "90%" },
+              color: " rgba(127, 197, 32, 1)",
+              fieldset: {
+                border: "1px solid rgba(214, 214, 214, 1)",
+                borderRadius: "7px"
+              },
+              "& .MuiOutlinedInput-root": {
+                padding: "20px"
+              },
+              "& .MuiAutocomplete-tag": {
+                backgroundColor: "rgba(129, 197, 37, 1)",
+                borderRadius: "7px"
+              },
+              "& .MuiChip-label": {
+                color: "rgba(255, 255, 255, 1)"
+              },
+              "& .MuiChip-deleteIcon": {
+                color: "rgba(255, 255, 255, 1)"
+              }
+            }}
+            renderInput={params => <TextField {...params} label="" />}
+            PaperComponent={props => (
+              <Paper
+                sx={{
+                  background: "rgba(129, 197, 37, 1)",
+                  color: "rgba(255, 255, 255, 1)",
+                  fontSize: "25px",
+                  "&:hover": {
+                    border: "1px solid #00FF00",
+                    color: "gray",
+                    backgroundColor: "white"
+                  }
+                }}
+                {...props}
+              />
+            )}
+          />
         </Box>
 
-        <Box sx={{ paddingTop: "30px" }}>
-          <Typography component="p" sx={{ color: "rgba(48, 48, 48, 1)" }}>
-            Meals
-          </Typography>
-          <Daystyle>
-            {Meals.map((item, i) => (
-              <Addplanmealbtn key={i} {...item} />
-            ))}
-          </Daystyle>
-        </Box>
+        <Typography variant="h6" sx={{ fontWeight: "300" }}>
+          Meals
+        </Typography>
+
+        <FormControl sx={{ width: "100%", paddingTop: "30px" }}>
+          <FormLabel sx={{ color: "rgba(48, 48, 48, 1)" }}>Breakfast</FormLabel>
+          <TextField
+            placeholder="Enter Breakfast"
+            sx={{ width: { xs: "100%", md: "90%" }, borderRadius: "7px" }}
+          ></TextField>
+        </FormControl>
+
+        <FormControl sx={{ width: "100%", paddingTop: "30px" }}>
+          <FormLabel sx={{ color: "rgba(48, 48, 48, 1)" }}>Snack 1</FormLabel>
+          <TextField
+            placeholder="Enter Snack 1"
+            sx={{ width: { xs: "100%", md: "90%" }, borderRadius: "7px" }}
+          ></TextField>
+        </FormControl>
+
+        <FormControl sx={{ width: "100%", paddingTop: "30px" }}>
+          <FormLabel sx={{ color: "rgba(48, 48, 48, 1)" }}>Lunch</FormLabel>
+          <TextField
+            placeholder="Enter Lunch"
+            sx={{ width: { xs: "100%", md: "90%" }, borderRadius: "7px" }}
+          ></TextField>
+        </FormControl>
+
+        <FormControl sx={{ width: "100%", paddingTop: "30px" }}>
+          <FormLabel sx={{ color: "rgba(48, 48, 48, 1)" }}>Snack 2</FormLabel>
+          <TextField
+            placeholder="Enter Snack 2"
+            sx={{ width: { xs: "100%", md: "90%" }, borderRadius: "7px" }}
+          ></TextField>
+        </FormControl>
+
+        <FormControl sx={{ width: "100%", paddingTop: "30px" }}>
+          <FormLabel sx={{ color: "rgba(48, 48, 48, 1)" }}>Dinner</FormLabel>
+          <TextField
+            placeholder="Enter Dinner"
+            sx={{ width: { xs: "100%", md: "90%" }, borderRadius: "7px" }}
+          ></TextField>
+        </FormControl>
       </Divstyle>
 
       <Divstyle>
@@ -85,7 +150,6 @@ const Addplansectn = () => {
         </FormControl>
 
         <Box sx={{ display: { md: "flex" }, width: { md: "93%" } }}>
-          {" "}
           <FormControl sx={{ width: "100%", paddingTop: "30px" }}>
             <FormLabel sx={{ color: "rgba(48, 48, 48, 1)" }}>Fat</FormLabel>
             <TextField
@@ -157,19 +221,6 @@ const Addplansectn = () => {
             display: { xs: "none", md: "flex", flexDirection: "column" }
           }}
         >
-          <FormLabel sx={{ color: "rgba(48, 48, 48, 1)" }}>Tags</FormLabel>
-          <TextField
-            placeholder="Enter tags"
-            sx={{ width: { xs: "100%", md: "90%" } }}
-          ></TextField>
-        </FormControl>
-        <FormControl
-          sx={{
-            width: "100%",
-            paddingTop: "30px",
-            display: { xs: "none", md: "flex", flexDirection: "column" }
-          }}
-        >
           <FormLabel sx={{ color: "rgba(48, 48, 48, 1)" }}>
             Exclude ingredients
           </FormLabel>
@@ -185,6 +236,7 @@ const Addplansectn = () => {
               width: { xs: "100%", md: "60%" },
               margin: "30px 0",
               padding: "20px 0",
+              marginRight: "50px",
               borderRadius: "7px"
             }}
           >
