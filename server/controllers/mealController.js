@@ -1,19 +1,18 @@
 const { mealPlanValidation } = require("../utils/validation");
-const { initGridDbTS, insert } = require("../config/db");
+const { initGridDbTS, insert, queryByID } = require("../config/db");
 const { responseHandler } = require("../utils/responseHandler");
 const { v4: uuidv4 } = require("uuid");
 
+const { collectionDb, store, conInfo } = await initGridDbTS();
+
 const addMeal = async (req, res) => {
-  const { collectionDb, store, conInfo } = await initGridDbTS();
   //validate req.body
 
   const { details } = await mealPlanValidation(req.body);
   if (details) {
     let allErrors = details.map((detail) => detail.message.replace(/"/g, ""));
     return responseHandler(res, allErrors, 400, false, "");
-  }  
-	
-
+  }
 
   try {
     const {
@@ -38,7 +37,7 @@ const addMeal = async (req, res) => {
       fat,
       cabs,
       protein,
-      "jide",
+      days.join(";"),
       breakfast,
       lunch,
       dinner,
@@ -49,11 +48,6 @@ const addMeal = async (req, res) => {
 
     const saveStatus = await insert(data, collectionDb);
 
-	 console.log(saveStatus)
-
-	  console.log(saveStatus.error, "error")
-
-	  		
     return saveStatus.status
       ? responseHandler(res, "Meal plan saved successfully", 201, true, "")
       : responseHandler(
@@ -68,7 +62,15 @@ const addMeal = async (req, res) => {
   }
 };
 
-const mealDetails = async (req, res) => {};
+const mealDetails = async (req, res) => {
+  const { id } = req.params;
+
+  const result = await queryByID(id, conInfo, store);
+
+  return result.length > 0
+    ? responseHandler(res, "meal detail found", 200, true, result)
+    : responseHandler(res, "No result found", 400, false, "");
+};
 
 const editMeal = async (req, res) => {};
 

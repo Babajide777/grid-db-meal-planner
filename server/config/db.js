@@ -29,7 +29,7 @@ function initContainer() {
       ["fat", griddb.Type.DOUBLE],
       ["cabs", griddb.Type.DOUBLE],
       ["protein", griddb.Type.DOUBLE],
-      ["days", griddb.Type.STRING],
+      ["days", griddb.Type.LONG],
       ["breakfast", griddb.Type.STRING],
       ["lunch", griddb.Type.STRING],
       ["dinner", griddb.Type.STRING],
@@ -41,15 +41,12 @@ function initContainer() {
     rowKey: true,
   });
 
-	console.log({conInfo})
   return conInfo;
 }
 
 async function createContainer(store, conInfo) {
   try {
     const collectionDB = await store.putContainer(conInfo);
-
-	  console.log({collectionDB})
     return collectionDB;
   } catch (err) {
     console.error(err);
@@ -70,8 +67,6 @@ async function initGridDbTS() {
 }
 
 async function containersInfo(store) {
-
-	console.log(store, "here")
   for (
     var index = 0;
     index < store.partitionController.partitionCount;
@@ -129,7 +124,7 @@ async function insert(data, container) {
         console.log(err.getMessage(i));
       }
 
-      return { status: false, err};
+      return { status: false, error: err.toString() };
     } else {
       console.log(err);
       return { status: false, error: err };
