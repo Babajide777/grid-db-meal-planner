@@ -87,23 +87,19 @@ const mealPlanDetails = async (req, res) => {
   const result = await queryByID(id, conInfo, store);
 
   return result
-  ? responseHandler(res, "meal plan detail found", 200, true, result)
-  : responseHandler(res, "No meal plan found", 400, false, "");
+    ? responseHandler(res, "meal plan detail found", 200, true, result)
+    : responseHandler(res, "No meal plan found", 400, false, "");
 };
 
 const editMealPlan = async (req, res) => {
   const { store, conInfo } = await initGridDbTS();
   const { id } = req.params;
 
+  const result = await queryByID(id, conInfo, store);
 
-	const result = await queryByID(id, conInfo, store);
-     
-
-	if (!result){
-        return responseHandler(res, "incorrect meal plan ID", 400, false, "");
-	}
-
-
+  if (!result) {
+    return responseHandler(res, "incorrect meal plan ID", 400, false, "");
+  }
 
   const {
     title,
@@ -137,18 +133,18 @@ const editMealPlan = async (req, res) => {
   ];
 
   const check = await editByID(store, conInfo, data);
-   
-	if(check[0]){
-		const result2 = await queryByID(id, conInfo, store);
 
-		return responseHandler(
-			                                res,
-			                                "meal plan edited successfully",
-			                                200,
-			                                true,
-			                                result2
-			                              )
-	}
+  if (check[0]) {
+    const result2 = await queryByID(id, conInfo, store);
+
+    return responseHandler(
+      res,
+      "meal plan edited successfully",
+      200,
+      true,
+      result2
+    );
+  }
   return responseHandler(res, "Error editing meal plan", 400, false, "");
 };
 
@@ -159,13 +155,7 @@ const deleteMealPlan = async (req, res) => {
   const result = await deleteByID(store, id, conInfo);
 
   return result[0]
-    ? responseHandler(
-        res,
-        "meal plan deleted successfully",
-        200,
-        true,
-        ""
-      )
+    ? responseHandler(res, "meal plan deleted successfully", 200, true, "")
     : responseHandler(res, "Error deleting meal plan", 400, false, "");
 };
 

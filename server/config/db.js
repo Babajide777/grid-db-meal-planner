@@ -152,7 +152,7 @@ async function queryAll(conInfo, store) {
 
     while (rowset.hasNext()) {
       const row = rowset.next();
-	    results.push(row);
+      results.push(row);
     }
     return { results, length: results.length };
   } catch (err) {
