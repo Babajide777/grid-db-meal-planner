@@ -236,7 +236,7 @@ const Addplansectn = () => {
               width: { xs: "100%", md: "60%" },
               margin: "30px 0",
               padding: "20px 0",
-              marginRight: "50px",
+              marginRight: "45px",
               borderRadius: "7px"
             }}
           >
