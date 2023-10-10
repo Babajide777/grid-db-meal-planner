@@ -42,54 +42,52 @@ const Cookstyle = styled("div")(({ theme }) => ({
 
 const SideNav = () => {
   return (
-    <Box flex={1} component="aside">
-      <Box
-        position="fixed"
+    <Box
+      component="aside"
+      sx={{
+        height: { xs: "none", md: "100vh" },
+        borderRight: 2,
+        borderColor: "rgba(228, 227, 231, 1)",
+        width: { xs: "100%", md: "15%" },
+      }}
+    >
+      <Cookstyle>
+        <Typography variant="h4">cookplan</Typography>
+      </Cookstyle>
+      <Typomenu
+        variant="h6"
         sx={{
-          height: { xs: "none", md: "100vh" },
-          borderRight: 2,
-          borderColor: "rgba(228, 227, 231, 1)",
-          width: { xs: "100%", md: "15%" },
+          color: "rgba(88, 100, 116, 1)",
+          pt: "30px",
+          pl: "30px",
+          pb: "10px",
         }}
       >
-        <Cookstyle>
-          <Typography variant="h4">cookplan</Typography>
-        </Cookstyle>
-        <Typomenu
-          variant="h6"
-          sx={{
-            color: "rgba(88, 100, 116, 1)",
-            pt: "30px",
-            pl: "30px",
-            pb: "10px",
-          }}
-        >
-          MENU
-        </Typomenu>
-        <Listul
-          sx={{
-            backgroundColor: "rgba(236, 248, 242, 1)",
-            borderRight: 3,
-            borderColor: "rgba(129, 197, 36, 1)",
-          }}
-        >
-          <ListItem disablePadding>
-            <ListItemButton sx={{ padding: "0", pl: "30px" }} href="#home">
-              <ListItemIcon sx={{ minWidth: "0" }}>
-                <img src={home} alt="home" />
-              </ListItemIcon>
-              <ListItemText
-                primary="Home"
-                sx={{
-                  pl: "20px",
-                  color: "rgba(129, 197, 36, 1)",
-                  fontWeight: "700",
-                }}
-              />
-            </ListItemButton>
-          </ListItem>
-        </Listul>
-      </Box>
+        MENU
+      </Typomenu>
+      <Listul
+        sx={{
+          backgroundColor: "rgba(236, 248, 242, 1)",
+          borderRight: 3,
+          borderColor: "rgba(129, 197, 36, 1)",
+        }}
+      >
+        <ListItem disablePadding>
+          <ListItemButton sx={{ padding: "0", pl: "30px" }} href="#home">
+            <ListItemIcon sx={{ minWidth: "0" }}>
+              <img src={home} alt="home" />
+            </ListItemIcon>
+            <ListItemText
+              primary="Home"
+              sx={{
+                pl: "20px",
+                color: "rgba(129, 197, 36, 1)",
+                fontWeight: "700",
+              }}
+            />
+          </ListItemButton>
+        </ListItem>
+      </Listul>
     </Box>
   );
 };

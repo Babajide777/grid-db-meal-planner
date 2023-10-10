@@ -60,28 +60,31 @@ const StyledBadge = styled(Badge)(({ theme }) => ({
 
 const Header = () => {
   return (
-    <Appstyle>
-      <StyledToolbar>
-        <Search>
-          <InputBase
-            startAdornment={
-              <InputAdornment position="start">
-                <SearchIcon sx={{ color: "rgba(173, 173, 173, 1)" }} />
-              </InputAdornment>
-            }
-            placeholder="Search"
-          />
-        </Search>
-        <Icons>
-          <StyledBadge badgeContent={1} color="error">
-            <MailIcon sx={{ color: "rgba(133, 197, 45, 1)" }} />
-          </StyledBadge>
-          <StyledBadge badgeContent={2} color="error">
-            <Notifications sx={{ color: "rgba(133, 197, 45, 1)" }} />
-          </StyledBadge>
-        </Icons>
-      </StyledToolbar>
-    </Appstyle>
+    <Box sx={{ backgroundColor: "blue" }}>
+      <p>Boss</p>
+      {/* <Appstyle>
+        <StyledToolbar>
+          <Search>
+            <InputBase
+              startAdornment={
+                <InputAdornment position="start">
+                  <SearchIcon sx={{ color: "rgba(173, 173, 173, 1)" }} />
+                </InputAdornment>
+              }
+              placeholder="Search"
+            />
+          </Search>
+          <Icons>
+            <StyledBadge badgeContent={1} color="error">
+              <MailIcon sx={{ color: "rgba(133, 197, 45, 1)" }} />
+            </StyledBadge>
+            <StyledBadge badgeContent={2} color="error">
+              <Notifications sx={{ color: "rgba(133, 197, 45, 1)" }} />
+            </StyledBadge>
+          </Icons>
+        </StyledToolbar>
+      </Appstyle> */}
+    </Box>
   );
 };
 

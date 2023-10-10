@@ -4,10 +4,11 @@ import Plan from "../components/Plan";
 
 const PlanList = () => {
   return (
-    <Box component="main">
-      <Box component="section">
+    <Box component="main" sx={{ backgroundColor: "black" }}>
+      {/* <Box component="section">
         <Plan planName="Jide" lastUpdated="2 minutes" />
-      </Box>
+      </Box> */}
+      <p>Tife</p>
     </Box>
   );
 };
