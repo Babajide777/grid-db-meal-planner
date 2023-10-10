@@ -152,13 +152,7 @@ async function queryAll(conInfo, store) {
 
     while (rowset.hasNext()) {
       const row = rowset.next();
-      const rowData = {
-        id: `${row[0]}`,
-        prompt: row[1],
-        cost: row[2],
-        details: row[3],
-      };
-      results.push(rowData);
+	    results.push(row);
     }
     return { results, length: results.length };
   } catch (err) {
@@ -170,12 +164,10 @@ async function queryAll(conInfo, store) {
 async function queryByID(id, conInfo, store) {
   try {
     const cont = await store.putContainer(conInfo);
-    const row = await cont.get(parseInt(id));
-    const result = [];
-    result.push(row);
-    return result;
+    const row = await cont.get(id);
+    return row;
   } catch (err) {
-    console.log(err);
+    console.log(err, "here");
   }
 }
 
@@ -218,11 +210,8 @@ const editByID = async (store, conInfo, data) => {
   try {
     const cont = await store.putContainer(conInfo);
     const res = await cont.put(data);
-    console.log(res);
-    return [true, res];
+    return [true, ""];
   } catch (err) {
-    console.log("update row error: ", err);
-
     return [false, err];
   }
 };
