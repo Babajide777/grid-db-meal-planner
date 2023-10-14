@@ -6,24 +6,24 @@ import {
   ListItemIcon,
   ListItemText,
   styled,
-  Typography,
-} from "@mui/material";
-import home from "../assets/images/home.svg";
-import React from "react";
+  Typography
+} from "@mui/material"
+import home from "../assets/images/home.svg"
+import React from "react"
 
 const Typomenu = styled(Typography)(({ theme }) => ({
   fontSize: "1rem",
   fontWeight: "300",
   [theme.breakpoints.down("md")]: {
-    display: "none",
-  },
-}));
+    display: "none"
+  }
+}))
 
 const Listul = styled(List)(({ theme }) => ({ theme }) => ({
   [theme.breakpoints.down("md")]: {
-    display: "none",
-  },
-}));
+    display: "none"
+  }
+}))
 
 const Cookstyle = styled("div")(({ theme }) => ({
   display: "flex",
@@ -36,9 +36,9 @@ const Cookstyle = styled("div")(({ theme }) => ({
   fontSize: "1.5rem",
   [theme.breakpoints.down("md")]: {
     height: "100px",
-    fontSize: "1rem",
-  },
-}));
+    fontSize: "1rem"
+  }
+}))
 
 const SideNav = () => {
   return (
@@ -48,7 +48,7 @@ const SideNav = () => {
         height: { xs: "none", md: "100vh" },
         borderRight: 2,
         borderColor: "rgba(228, 227, 231, 1)",
-        width: { xs: "100%", md: "15%" },
+        width: { xs: "100%", md: "15%" }
       }}
     >
       <Cookstyle>
@@ -60,7 +60,7 @@ const SideNav = () => {
           color: "rgba(88, 100, 116, 1)",
           pt: "30px",
           pl: "30px",
-          pb: "10px",
+          pb: "10px"
         }}
       >
         MENU
@@ -69,7 +69,7 @@ const SideNav = () => {
         sx={{
           backgroundColor: "rgba(236, 248, 242, 1)",
           borderRight: 3,
-          borderColor: "rgba(129, 197, 36, 1)",
+          borderColor: "rgba(129, 197, 36, 1)"
         }}
       >
         <ListItem disablePadding>
@@ -82,14 +82,14 @@ const SideNav = () => {
               sx={{
                 pl: "20px",
                 color: "rgba(129, 197, 36, 1)",
-                fontWeight: "700",
+                fontWeight: "700"
               }}
             />
           </ListItemButton>
         </ListItem>
       </Listul>
     </Box>
-  );
-};
+  )
+}
 
-export default SideNav;
+export default SideNav

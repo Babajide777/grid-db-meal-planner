@@ -2,7 +2,7 @@ import { Box, Divider, Typography, styled } from "@mui/material"
 import React from "react"
 
 const Dividerstyle = styled(Divider)({
-  "&:nth-child(7)": {
+  "MuiDivider-root:nth-of-type(7)": {
     display: "none"
   }
 })
@@ -13,14 +13,14 @@ const DaysOfTheWeek = ({ day }) => {
       sx={{
         display: "flex",
         alignItems: "center",
-        justifyContent: "space-between"
+        justifyContent: "space-between",
+        width: "100%"
       }}
     >
       <Typography
         sx={{
-          color: "rgba(255, 255, 255, 1)"
-          // borderRight: 2,
-          // paddingRight: "70px"
+          color: "rgba(255, 255, 255, 1)",
+          margin: "0 auto"
         }}
       >
         {day}
@@ -30,8 +30,7 @@ const DaysOfTheWeek = ({ day }) => {
         sx={{
           width: "2px",
           height: "40px",
-          marginLeft: "70px",
-          color: "rgba(255, 255, 255, 1)"
+          backgroundColor: "rgba(255, 255, 255, 1)"
         }}
       />
     </Box>

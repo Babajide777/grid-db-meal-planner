@@ -39,27 +39,27 @@ const food = [
     name: "Pineapple Turmeric Cauliflower Porridqe"
   },
   {
-    heading: "Breakfast",
+    heading: "Snack-1",
     image: healingTumeric,
     name: "Pineapple Turmeric Cauliflower Porridqe"
   },
   {
-    heading: "Breakfast",
+    heading: "Lunch",
     image: healingTumeric,
     name: "Pineapple Turmeric Cauliflower Porridqe"
   },
   {
-    heading: "Breakfast",
+    heading: "Snack-2",
     image: healingTumeric,
     name: "Pineapple Turmeric Cauliflower Porridqe"
   },
   {
-    heading: "Breakfast",
+    heading: "Dinner",
     image: healingTumeric,
     name: "Pineapple Turmeric Cauliflower Porridqe"
   },
   {
-    heading: "Breakfast",
+    heading: "Snack-3",
     image: healingTumeric,
     name: "Pineapple Turmeric Cauliflower Porridqe"
   }

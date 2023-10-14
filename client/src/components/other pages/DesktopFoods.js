@@ -24,9 +24,7 @@ const DesktopFoods = ({ heading, image, name }) => {
           padding: "10px 0"
         }}
       >
-        <Typography component="h4" sx={{}}>
-          {heading}
-        </Typography>
+        <Typography component="h4">{heading}</Typography>
         <img src={Union} alt="" width={5} height={15} />
       </Box>
       <Box sx={{ borderRadius: "20px" }}>
