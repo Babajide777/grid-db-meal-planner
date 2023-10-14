@@ -5,12 +5,12 @@ import {
   InputAdornment,
   InputBase,
   Toolbar,
-  styled,
-} from "@mui/material";
-import MailIcon from "@mui/icons-material/Mail";
-import { Notifications } from "@mui/icons-material";
-import SearchIcon from "@mui/icons-material/Search";
-import React from "react";
+  styled
+} from "@mui/material"
+import MailIcon from "@mui/icons-material/Mail"
+import { Notifications } from "@mui/icons-material"
+import SearchIcon from "@mui/icons-material/Search"
+import React from "react"
 
 const Appstyle = styled(AppBar)(({ theme }) => ({
   backgroundColor: "white",
@@ -19,14 +19,14 @@ const Appstyle = styled(AppBar)(({ theme }) => ({
   [theme.breakpoints.down("md")]: {
     width: "100%",
     padding: "15px 0",
-    border: "0",
-  },
-}));
+    border: "0"
+  }
+}))
 
 const StyledToolbar = styled(Toolbar)({
   display: "flex",
-  justifyContent: "flex-end",
-});
+  justifyContent: "flex-end"
+})
 
 const Search = styled("div")(({ theme }) => ({
   backgroundColor: "white",
@@ -36,9 +36,9 @@ const Search = styled("div")(({ theme }) => ({
   width: "40%",
   [theme.breakpoints.down("md")]: {
     width: "90%",
-    padding: "5px 10px",
-  },
-}));
+    padding: "5px 10px"
+  }
+}))
 
 const Icons = styled(Box)(({ theme }) => ({
   display: "flex",
@@ -47,16 +47,16 @@ const Icons = styled(Box)(({ theme }) => ({
   marginLeft: "50px",
   gap: "20px",
   [theme.breakpoints.down("md")]: {
-    display: "none",
-  },
-}));
+    display: "none"
+  }
+}))
 
 const StyledBadge = styled(Badge)(({ theme }) => ({
   "& .MuiBadge-badge": {
     right: 2,
-    top: 5,
-  },
-}));
+    top: 5
+  }
+}))
 
 const Header = () => {
   return (
@@ -82,7 +82,7 @@ const Header = () => {
         </Icons>
       </StyledToolbar>
     </Appstyle>
-  );
-};
+  )
+}
 
-export default Header;
+export default Header
