@@ -58,7 +58,6 @@ const AddPlan = () => {
 
       <Box
         sx={{
-          // height: "839px",
           width: { xs: "100%", md: "78%" },
           backgroundColor: "rgba(255, 255, 255, 1)",
           marginTop: "100px",
@@ -68,12 +67,9 @@ const AddPlan = () => {
           borderRadius: { md: "10px" },
         }}
       >
-        <Typography
-          variant="p"
-          component="p"
+        <Box
           sx={{
             display: { xs: "none", md: "flex", alignItems: "center" },
-            fontSize: "15px",
           }}
         >
           <Divider
@@ -86,8 +82,17 @@ const AddPlan = () => {
               margin: "0 10px",
             }}
           />
-          Please add your new plan
-        </Typography>
+          <Typography
+            variant="p"
+            component="p"
+            sx={{
+              display: { xs: "none", md: "flex", alignItems: "center" },
+              fontSize: "15px",
+            }}
+          >
+            Please add your new plan
+          </Typography>
+        </Box>
 
         <Section />
       </Box>

@@ -7,12 +7,12 @@ import {
   InputAdornment,
   TextField,
   Typography,
-  styled
-} from "@mui/material"
-import { Days } from "../assets/data"
-import Paper from "@mui/material/Paper"
-import ClearIcon from "@mui/icons-material/Clear"
-import React from "react"
+  styled,
+} from "@mui/material";
+import { Days } from "../assets/data";
+import Paper from "@mui/material/Paper";
+import ClearIcon from "@mui/icons-material/Clear";
+import React from "react";
 
 const Sectionstyle = styled("section")(({ theme }) => ({
   margin: "0 auto",
@@ -22,15 +22,15 @@ const Sectionstyle = styled("section")(({ theme }) => ({
     justifyContent: "space-evenly",
     margin: "unset",
     padding: "40px 0",
-    paddingLeft: "80px"
-  }
-}))
+    paddingLeft: "80px",
+  },
+}));
 
 const Divstyle = styled("div")(({ theme }) => ({
   [theme.breakpoints.up("md")]: {
-    width: "50%"
-  }
-}))
+    width: "50%",
+  },
+}));
 
 const Addplansectn = () => {
   return (
@@ -51,7 +51,7 @@ const Addplansectn = () => {
             defaultValue={[Days[0], Days[1]]}
             disablePortal
             ChipProps={{
-              deleteIcon: <ClearIcon />
+              deleteIcon: <ClearIcon />,
             }}
             id="combo-box-demo"
             options={Days}
@@ -60,24 +60,24 @@ const Addplansectn = () => {
               color: " rgba(127, 197, 32, 1)",
               fieldset: {
                 border: "1px solid rgba(214, 214, 214, 1)",
-                borderRadius: "7px"
+                borderRadius: "7px",
               },
               "& .MuiOutlinedInput-root": {
-                padding: "20px"
+                padding: "20px",
               },
               "& .MuiAutocomplete-tag": {
                 backgroundColor: "rgba(129, 197, 37, 1)",
-                borderRadius: "7px"
+                borderRadius: "7px",
               },
               "& .MuiChip-label": {
-                color: "rgba(255, 255, 255, 1)"
+                color: "rgba(255, 255, 255, 1)",
               },
               "& .MuiChip-deleteIcon": {
-                color: "rgba(255, 255, 255, 1)"
-              }
+                color: "rgba(255, 255, 255, 1)",
+              },
             }}
-            renderInput={params => <TextField {...params} label="" />}
-            PaperComponent={props => (
+            renderInput={(params) => <TextField {...params} label="" />}
+            PaperComponent={(props) => (
               <Paper
                 sx={{
                   background: "rgba(129, 197, 37, 1)",
@@ -86,8 +86,8 @@ const Addplansectn = () => {
                   "&:hover": {
                     border: "1px solid #00FF00",
                     color: "gray",
-                    backgroundColor: "white"
-                  }
+                    backgroundColor: "white",
+                  },
                 }}
                 {...props}
               />
@@ -138,6 +138,13 @@ const Addplansectn = () => {
             sx={{ width: { xs: "100%", md: "90%" }, borderRadius: "7px" }}
           ></TextField>
         </FormControl>
+        <FormControl sx={{ width: "100%", paddingTop: "30px" }}>
+          <FormLabel sx={{ color: "rgba(48, 48, 48, 1)" }}>Snack 3</FormLabel>
+          <TextField
+            placeholder="Enter Snack 3"
+            sx={{ width: { xs: "100%", md: "90%" }, borderRadius: "7px" }}
+          ></TextField>
+        </FormControl>
       </Divstyle>
 
       <Divstyle>
@@ -161,12 +168,12 @@ const Addplansectn = () => {
                     sx={{
                       color: "rgba(177, 177, 177, 1)",
                       fontWeight: "400",
-                      display: { xs: "none", md: "flex", alignItems: "center" }
+                      display: { xs: "none", md: "flex", alignItems: "center" },
                     }}
                   >
                     G
                   </InputAdornment>
-                )
+                ),
               }}
               sx={{ width: { xs: "100%", md: "90%" } }}
             ></TextField>
@@ -182,12 +189,12 @@ const Addplansectn = () => {
                     sx={{
                       color: "rgba(177, 177, 177, 1)",
                       fontWeight: "400",
-                      display: { xs: "none", md: "flex", alignItems: "center" }
+                      display: { xs: "none", md: "flex", alignItems: "center" },
                     }}
                   >
                     G
                   </InputAdornment>
-                )
+                ),
               }}
               sx={{ width: { xs: "100%", md: "90%" } }}
             ></TextField>
@@ -203,12 +210,12 @@ const Addplansectn = () => {
                     sx={{
                       color: "rgba(177, 177, 177, 1)",
                       fontWeight: "400",
-                      display: { xs: "none", md: "flex", alignItems: "center" }
+                      display: { xs: "none", md: "flex", alignItems: "center" },
                     }}
                   >
                     G
                   </InputAdornment>
-                )
+                ),
               }}
               sx={{ width: { xs: "100%", md: "90%" } }}
             ></TextField>
@@ -218,7 +225,7 @@ const Addplansectn = () => {
           sx={{
             width: "100%",
             paddingTop: "30px",
-            display: { xs: "none", md: "flex", flexDirection: "column" }
+            display: { xs: "none", md: "flex", flexDirection: "column" },
           }}
         >
           <FormLabel sx={{ color: "rgba(48, 48, 48, 1)" }}>
@@ -237,14 +244,14 @@ const Addplansectn = () => {
               margin: "30px 0",
               padding: "20px 0",
               marginRight: "45px",
-              borderRadius: "7px"
+              borderRadius: "7px",
             }}
           >
             <Typography
               variant="body2"
               sx={{
                 color: "rgba(255, 255, 255, 1)",
-                textTransform: "capitalize"
+                textTransform: "capitalize",
               }}
             >
               Create Plan
@@ -253,7 +260,7 @@ const Addplansectn = () => {
         </Box>
       </Divstyle>
     </Sectionstyle>
-  )
-}
+  );
+};
 
-export default Addplansectn
+export default Addplansectn;

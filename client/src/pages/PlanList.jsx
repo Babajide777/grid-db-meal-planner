@@ -1,8 +1,7 @@
-import React from "react"
-import { Box } from "@mui/material"
-import Planaddplan from "../components/other pages/Planaddplan"
-import Planlistmain from "../components/other pages/Planlistmain"
-import Plan from "../components/Plan"
+import React from "react";
+import { Box } from "@mui/material";
+import Planaddplan from "../components/other pages/Planaddplan";
+import Planlistmain from "../components/other pages/Planlistmain";
 
 const PlanList = () => {
   return (
@@ -14,7 +13,7 @@ const PlanList = () => {
         component="section"
         sx={{
           width: "95%",
-          display: { xs: "none", md: "block" }
+          display: { xs: "none", md: "block" },
         }}
       >
         <Planaddplan />
@@ -23,13 +22,13 @@ const PlanList = () => {
         component="section"
         sx={{
           margin: { md: "30px 0" },
-          marginLeft: { md: "30px" }
+          marginLeft: { md: "30px" },
         }}
       >
         <Planlistmain />
       </Box>
     </Box>
-  )
-}
+  );
+};
 
-export default PlanList
+export default PlanList;

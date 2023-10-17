@@ -1,5 +1,6 @@
-import { Box, Button, Divider, Typography } from "@mui/material"
-import React from "react"
+import { Box, Divider, Typography } from "@mui/material";
+import React from "react";
+import { Link } from "react-router-dom";
 
 const Items = ({ Image, mealplan, mealtime, editimg, deleteimg }) => {
   return (
@@ -7,51 +8,60 @@ const Items = ({ Image, mealplan, mealtime, editimg, deleteimg }) => {
       sx={{
         display: "flex",
         alignItems: "center",
-        padding: "",
         padding: { xs: "8px 30px", md: " 15px" },
         width: { md: "40%" },
         borderBottom: { md: 1 },
-        borderColor: { md: "rgba(236, 236, 236, 1)" }
+        borderColor: { md: "rgba(236, 236, 236, 1)" },
       }}
     >
-      <img src={Image} width={60} />
+      <Link to={`plan/detail/${mealplan}`}>
+        <img src={Image} width={60} alt={mealplan} />
+      </Link>
+
       <Box
         sx={{
           width: "100%",
           display: "flex",
           alignItems: "center",
-          justifyContent: "space-between"
+          justifyContent: "space-between",
         }}
       >
-        <Box
-          sx={{ display: "flex", flexDirection: "column", paddingLeft: "10px" }}
-        >
-          <Typography
-            variant="p"
+        <Link to={`plan/detail/${mealplan}`}>
+          <Box
             sx={{
-              fontSize: { xs: "18px", md: "14px" },
-              color: "rgba(0, 0, 0, 1)",
-              fontWeight: "400"
+              display: "flex",
+              flexDirection: "column",
+              paddingLeft: "10px",
             }}
           >
-            {mealplan}
-          </Typography>
-          <Typography
-            variant="p"
-            sx={{
-              fontSize: { xs: "14px", md: "12px" },
-              color: "rgba(130, 134, 126, 1)"
-            }}
-          >
-            {mealtime}
-          </Typography>
-        </Box>
+            <Typography
+              variant="p"
+              sx={{
+                fontSize: { xs: "18px", md: "14px" },
+                color: "rgba(0, 0, 0, 1)",
+                fontWeight: "400",
+              }}
+            >
+              {mealplan}
+            </Typography>
+            <Typography
+              variant="p"
+              sx={{
+                fontSize: { xs: "14px", md: "12px" },
+                color: "rgba(130, 134, 126, 1)",
+              }}
+            >
+              {mealtime}
+            </Typography>
+          </Box>
+        </Link>
+
         <Box sx={{ display: "flex", alignItems: "center" }}>
           <Box
             sx={{
               paddingRight: { xs: "20px", md: "0" },
               display: "flex",
-              alignItems: "center"
+              alignItems: "center",
             }}
           >
             <img src={editimg} alt="" width={10} height={10} />
@@ -62,7 +72,7 @@ const Items = ({ Image, mealplan, mealtime, editimg, deleteimg }) => {
                 fontWeight: "400",
                 fontSize: "12px",
                 paddingLeft: "3px",
-                paddingTop: { md: "5px" }
+                paddingTop: { md: "5px" },
               }}
             >
               Edit
@@ -76,7 +86,7 @@ const Items = ({ Image, mealplan, mealtime, editimg, deleteimg }) => {
               backgroundColor: "rgba(236, 236, 236, 1)",
               border: "none",
               margin: "0 15px",
-              display: { xs: "none", md: "block" }
+              display: { xs: "none", md: "block" },
             }}
           />
           <Box sx={{ display: "flex", alignItems: "center" }}>
@@ -88,7 +98,7 @@ const Items = ({ Image, mealplan, mealtime, editimg, deleteimg }) => {
                 fontWeight: "400",
                 fontSize: "12px",
                 paddingLeft: "3px",
-                paddingTop: { md: "5px" }
+                paddingTop: { md: "5px" },
               }}
             >
               Delete
@@ -97,7 +107,7 @@ const Items = ({ Image, mealplan, mealtime, editimg, deleteimg }) => {
         </Box>
       </Box>
     </Box>
-  )
-}
+  );
+};
 
-export default Items
+export default Items;
