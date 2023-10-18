@@ -40,11 +40,14 @@ const planSlice = createSlice({
         state.isLoading = true;
       })
       .addCase(createAMealPlan.fulfilled, (state, action) => {
-        console.log(state);
-        console.log(action);
+        console.log(state, "state");
+        console.log(action, "action");
+        action.payload.success
+          ? (state.isSuccess = true)
+          : (state.isSuccess = false);
         state.isLoading = false;
-        state.isSuccess = true;
-        state.plan = action.payload;
+        state.plan = action.payload.data;
+        state.message = action.payload.message;
       })
       .addCase(createAMealPlan.rejected, (state, action) => {
         state.isError = true;
