@@ -10,6 +10,7 @@ const addMealPlan = async (data) => {
     body: JSON.stringify(data),
   });
   const content = await rawResponse.json();
+  console.log({ content });
 
   return content;
 };

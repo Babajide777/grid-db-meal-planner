@@ -12,9 +12,9 @@ import {
 import { Days } from "../assets/data";
 import Paper from "@mui/material/Paper";
 import ClearIcon from "@mui/icons-material/Clear";
-import React from "react";
+import React, { useState } from "react";
 
-const Sectionstyle = styled("section")(({ theme }) => ({
+const Sectionstyle = styled("form")(({ theme }) => ({
   margin: "0 auto",
   width: "100%",
   [theme.breakpoints.up("md")]: {
@@ -33,15 +33,29 @@ const Divstyle = styled("div")(({ theme }) => ({
 }));
 
 const Addplansectn = () => {
+  const [selectedValues, setSelectedValues] = useState([]);
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    const data = Object.fromEntries(new FormData(e.currentTarget));
+    data.days = selectedValues;
+
+    console.log(data);
+  };
+
+  const handleAutocompleteChange = (event, newValue) => {
+    setSelectedValues(newValue);
+  };
+
   return (
-    <Sectionstyle>
+    <Sectionstyle onSubmit={handleSubmit}>
       <Divstyle>
         <FormControl sx={{ width: "100%", paddingTop: "30px" }}>
           <FormLabel sx={{ color: "rgba(48, 48, 48, 1)" }}>Title</FormLabel>
           <TextField
-            defaultValue="Enter title"
+            placeholder="Enter Title"
             sx={{ width: { xs: "100%", md: "90%" }, borderRadius: "7px" }}
-          ></TextField>
+            name="title"
+          />
         </FormControl>
 
         <Box sx={{ margin: "30px 0" }}>
@@ -76,7 +90,10 @@ const Addplansectn = () => {
                 color: "rgba(255, 255, 255, 1)",
               },
             }}
-            renderInput={(params) => <TextField {...params} label="" />}
+            onChange={handleAutocompleteChange}
+            renderInput={(params) => (
+              <TextField name="days" {...params} label="" />
+            )}
             PaperComponent={(props) => (
               <Paper
                 sx={{
@@ -92,6 +109,7 @@ const Addplansectn = () => {
                 {...props}
               />
             )}
+            value={selectedValues}
           />
         </Box>
 
@@ -104,7 +122,8 @@ const Addplansectn = () => {
           <TextField
             placeholder="Enter Breakfast"
             sx={{ width: { xs: "100%", md: "90%" }, borderRadius: "7px" }}
-          ></TextField>
+            name="breakfast"
+          />
         </FormControl>
 
         <FormControl sx={{ width: "100%", paddingTop: "30px" }}>
@@ -112,7 +131,8 @@ const Addplansectn = () => {
           <TextField
             placeholder="Enter Snack 1"
             sx={{ width: { xs: "100%", md: "90%" }, borderRadius: "7px" }}
-          ></TextField>
+            name="snack1"
+          />
         </FormControl>
 
         <FormControl sx={{ width: "100%", paddingTop: "30px" }}>
@@ -120,7 +140,8 @@ const Addplansectn = () => {
           <TextField
             placeholder="Enter Lunch"
             sx={{ width: { xs: "100%", md: "90%" }, borderRadius: "7px" }}
-          ></TextField>
+            name="lunch"
+          />
         </FormControl>
 
         <FormControl sx={{ width: "100%", paddingTop: "30px" }}>
@@ -128,7 +149,8 @@ const Addplansectn = () => {
           <TextField
             placeholder="Enter Snack 2"
             sx={{ width: { xs: "100%", md: "90%" }, borderRadius: "7px" }}
-          ></TextField>
+            name="snack2"
+          />
         </FormControl>
 
         <FormControl sx={{ width: "100%", paddingTop: "30px" }}>
@@ -136,14 +158,16 @@ const Addplansectn = () => {
           <TextField
             placeholder="Enter Dinner"
             sx={{ width: { xs: "100%", md: "90%" }, borderRadius: "7px" }}
-          ></TextField>
+            name="dinner"
+          />
         </FormControl>
         <FormControl sx={{ width: "100%", paddingTop: "30px" }}>
           <FormLabel sx={{ color: "rgba(48, 48, 48, 1)" }}>Snack 3</FormLabel>
           <TextField
             placeholder="Enter Snack 3"
             sx={{ width: { xs: "100%", md: "90%" }, borderRadius: "7px" }}
-          ></TextField>
+            name="snack3"
+          />
         </FormControl>
       </Divstyle>
 
@@ -151,16 +175,17 @@ const Addplansectn = () => {
         <FormControl sx={{ width: "100%", paddingTop: "30px" }}>
           <FormLabel sx={{ color: "rgba(48, 48, 48, 1)" }}>Calories</FormLabel>
           <TextField
-            defaultValue="0"
             sx={{ width: { xs: "100%", md: "90%" } }}
-          ></TextField>
+            type="number"
+            name="calories"
+          />
         </FormControl>
 
         <Box sx={{ display: { md: "flex" }, width: { md: "93%" } }}>
           <FormControl sx={{ width: "100%", paddingTop: "30px" }}>
             <FormLabel sx={{ color: "rgba(48, 48, 48, 1)" }}>Fat</FormLabel>
             <TextField
-              defaultValue="0"
+              type="number"
               InputProps={{
                 endAdornment: (
                   <InputAdornment
@@ -176,12 +201,13 @@ const Addplansectn = () => {
                 ),
               }}
               sx={{ width: { xs: "100%", md: "90%" } }}
-            ></TextField>
+              name="fat"
+            />
           </FormControl>
           <FormControl sx={{ width: "100%", paddingTop: "30px" }}>
             <FormLabel sx={{ color: "rgba(48, 48, 48, 1)" }}>Cabs</FormLabel>
             <TextField
-              defaultValue="0"
+              type="number"
               InputProps={{
                 endAdornment: (
                   <InputAdornment
@@ -197,12 +223,13 @@ const Addplansectn = () => {
                 ),
               }}
               sx={{ width: { xs: "100%", md: "90%" } }}
-            ></TextField>
+              name="cabs"
+            />
           </FormControl>
           <FormControl sx={{ width: "100%", paddingTop: "30px" }}>
             <FormLabel sx={{ color: "rgba(48, 48, 48, 1)" }}>Protein</FormLabel>
             <TextField
-              defaultValue="0"
+              type="number"
               InputProps={{
                 endAdornment: (
                   <InputAdornment
@@ -218,24 +245,10 @@ const Addplansectn = () => {
                 ),
               }}
               sx={{ width: { xs: "100%", md: "90%" } }}
-            ></TextField>
+              name="protein"
+            />
           </FormControl>
         </Box>
-        <FormControl
-          sx={{
-            width: "100%",
-            paddingTop: "30px",
-            display: { xs: "none", md: "flex", flexDirection: "column" },
-          }}
-        >
-          <FormLabel sx={{ color: "rgba(48, 48, 48, 1)" }}>
-            Exclude ingredients
-          </FormLabel>
-          <TextField
-            placeholder="Enter ingredients"
-            sx={{ width: { xs: "100%", md: "90%" } }}
-          ></TextField>
-        </FormControl>
         <Box sx={{ display: { md: "flex", justifyContent: "center" } }}>
           <Button
             sx={{
@@ -246,6 +259,7 @@ const Addplansectn = () => {
               marginRight: "45px",
               borderRadius: "7px",
             }}
+            type="submit"
           >
             <Typography
               variant="body2"

@@ -8,13 +8,13 @@ import deleteImg from "../assets/images/deleteImg.png";
 import editImg from "../assets/images/editImg.png";
 
 const Days = [
-  "Monday",
-  "Tuesday",
-  "Wednesday",
-  "Thursday",
-  "Friday",
-  "Saturday",
-  "Sunday",
+  "monday",
+  "tuesday",
+  "wednesday",
+  "thursday",
+  "friday",
+  "saturday",
+  "sunday",
 ];
 const Date = [
   { day: "Monday" },
