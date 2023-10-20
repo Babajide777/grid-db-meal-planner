@@ -40,8 +40,6 @@ const planSlice = createSlice({
         state.isLoading = true;
       })
       .addCase(createAMealPlan.fulfilled, (state, action) => {
-        console.log(state, "state");
-        console.log(action, "action");
         action.payload.success
           ? (state.isSuccess = true)
           : (state.isSuccess = false);

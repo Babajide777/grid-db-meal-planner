@@ -44,8 +44,6 @@ const Addplansectn = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
     const data = Object.fromEntries(new FormData(e.currentTarget));
-    data.days = selectedValues;
-
     let newData = {
       title: data.title,
       breakfast: data.breakfast,
@@ -60,7 +58,6 @@ const Addplansectn = () => {
       snack2: data.snack2,
       snack3: data.snack3,
     };
-    console.log(newData);
     dispatch(createAMealPlan(newData));
   };
 

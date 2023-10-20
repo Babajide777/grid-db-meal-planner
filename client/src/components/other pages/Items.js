@@ -2,7 +2,7 @@ import { Box, Divider, Typography } from "@mui/material";
 import React from "react";
 import { Link } from "react-router-dom";
 
-const Items = ({ Image, mealplan, mealtime, editimg, deleteimg }) => {
+const Items = ({ Image, mealplan, editimg, deleteimg }) => {
   return (
     <Box
       sx={{
@@ -43,15 +43,6 @@ const Items = ({ Image, mealplan, mealtime, editimg, deleteimg }) => {
               }}
             >
               {mealplan}
-            </Typography>
-            <Typography
-              variant="p"
-              sx={{
-                fontSize: { xs: "14px", md: "12px" },
-                color: "rgba(130, 134, 126, 1)",
-              }}
-            >
-              {mealtime}
             </Typography>
           </Box>
         </Link>
