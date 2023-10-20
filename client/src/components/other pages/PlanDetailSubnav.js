@@ -15,7 +15,7 @@ const PlanDetailSubnav = () => {
         display: "flex",
         flexDirection: "row",
         justifyContent: "space-between",
-        padding: "0 20px"
+        padding: "10px 20px"
       }}
     >
       <Box
@@ -47,12 +47,6 @@ const PlanDetailSubnav = () => {
         />
         <Box>
           <Typography component="p"> Low carb meal plan</Typography>
-          <Typography
-            component="p"
-            sx={{ color: "rgba(130, 134, 126, 1)", fontSize: "14px" }}
-          >
-            Last edit was 20 minutes ago
-          </Typography>
         </Box>
       </Box>
 
