@@ -7,17 +7,18 @@ import {
   InputAdornment,
   TextField,
   Typography,
-  styled,
-} from "@mui/material";
-import { Days } from "../assets/data";
-import Paper from "@mui/material/Paper";
-import ClearIcon from "@mui/icons-material/Clear";
-import React, { useEffect, useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { createAMealPlan, reset } from "../../store/features/plan/planSlice";
-import { ToastContainer, toast } from "react-toastify";
-import "react-toastify/dist/ReactToastify.css";
-import { useNavigate } from "react-router-dom";
+  styled
+} from "@mui/material"
+import { Days } from "../assets/data"
+import Paper from "@mui/material/Paper"
+import ClearIcon from "@mui/icons-material/Clear"
+import React, { useEffect, useState } from "react"
+import { useDispatch, useSelector } from "react-redux"
+import { createAMealPlan, reset } from "../../store/features/plan/planSlice"
+import { ToastContainer, toast } from "react-toastify"
+import "react-toastify/dist/ReactToastify.css"
+import { useNavigate } from "react-router-dom"
+import Validation from "./Validation"
 
 const Sectionstyle = styled("form")(({ theme }) => ({
   margin: "0 auto",
@@ -27,23 +28,25 @@ const Sectionstyle = styled("form")(({ theme }) => ({
     justifyContent: "space-evenly",
     margin: "unset",
     padding: "40px 0",
-    paddingLeft: "80px",
-  },
-}));
+    paddingLeft: "80px"
+  }
+}))
 
 const Divstyle = styled("div")(({ theme }) => ({
   [theme.breakpoints.up("md")]: {
-    width: "50%",
-  },
-}));
+    width: "50%"
+  }
+}))
 
 const Addplansectn = () => {
-  const [selectedValues, setSelectedValues] = useState([]);
-  const dispatch = useDispatch();
-  const navigate = useNavigate();
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    const data = Object.fromEntries(new FormData(e.currentTarget));
+  const [selectedValues, setSelectedValues] = useState([])
+  const [errors, setErrors] = useState({})
+
+  const dispatch = useDispatch()
+  const navigate = useNavigate()
+  const handleSubmit = e => {
+    e.preventDefault()
+    const data = Object.fromEntries(new FormData(e.currentTarget))
     let newData = {
       title: data.title,
       breakfast: data.breakfast,
@@ -56,31 +59,32 @@ const Addplansectn = () => {
       protein: Number(data.protein),
       snack1: data.snack1,
       snack2: data.snack2,
-      snack3: data.snack3,
-    };
-    dispatch(createAMealPlan(newData));
-  };
+      snack3: data.snack3
+    }
+    // dispatch(createAMealPlan(newData))
+    console.log({ data })
+    console.log({ newData })
+    setErrors(Validation(newData))
+  }
 
   const handleAutocompleteChange = (event, newValue) => {
-    setSelectedValues(newValue);
-  };
+    setSelectedValues(newValue)
+  }
 
-  const { plan, isError, isSuccess, message } = useSelector(
-    (state) => state.plan
-  );
+  const { plan, isError, isSuccess, message } = useSelector(state => state.plan)
 
   useEffect(() => {
-    if (isError) toast.error(message);
+    if (isError) toast.error(message)
     if (isSuccess) {
-      toast.success(message);
+      toast.success(message)
       setTimeout(() => {
-        navigate("/");
-      }, 3000);
-      dispatch(reset);
+        navigate("/")
+      }, 3000)
+      dispatch(reset)
     } else {
-      toast.error(message);
+      toast.error(message)
     }
-  }, [plan, isError, isSuccess, message, navigate, dispatch]);
+  }, [plan, isError, isSuccess, message, navigate, dispatch])
 
   return (
     <Sectionstyle onSubmit={handleSubmit}>
@@ -92,6 +96,11 @@ const Addplansectn = () => {
             sx={{ width: { xs: "100%", md: "90%" }, borderRadius: "7px" }}
             name="title"
           />
+          {errors.title && (
+            <Typography component="p" sx={{ color: "red" }}>
+              {errors.title}
+            </Typography>
+          )}
         </FormControl>
 
         <Box sx={{ margin: "30px 0" }}>
@@ -101,7 +110,7 @@ const Addplansectn = () => {
             defaultValue={[Days[0], Days[1]]}
             disablePortal
             ChipProps={{
-              deleteIcon: <ClearIcon />,
+              deleteIcon: <ClearIcon />
             }}
             id="combo-box-demo"
             options={Days}
@@ -110,27 +119,27 @@ const Addplansectn = () => {
               color: " rgba(127, 197, 32, 1)",
               fieldset: {
                 border: "1px solid rgba(214, 214, 214, 1)",
-                borderRadius: "7px",
+                borderRadius: "7px"
               },
               "& .MuiOutlinedInput-root": {
-                padding: "20px",
+                padding: "20px"
               },
               "& .MuiAutocomplete-tag": {
                 backgroundColor: "rgba(129, 197, 37, 1)",
-                borderRadius: "7px",
+                borderRadius: "7px"
               },
               "& .MuiChip-label": {
-                color: "rgba(255, 255, 255, 1)",
+                color: "rgba(255, 255, 255, 1)"
               },
               "& .MuiChip-deleteIcon": {
-                color: "rgba(255, 255, 255, 1)",
-              },
+                color: "rgba(255, 255, 255, 1)"
+              }
             }}
             onChange={handleAutocompleteChange}
-            renderInput={(params) => (
+            renderInput={params => (
               <TextField name="days" {...params} label="" />
             )}
-            PaperComponent={(props) => (
+            PaperComponent={props => (
               <Paper
                 sx={{
                   background: "rgba(129, 197, 37, 1)",
@@ -139,8 +148,8 @@ const Addplansectn = () => {
                   "&:hover": {
                     border: "1px solid #00FF00",
                     color: "gray",
-                    backgroundColor: "white",
-                  },
+                    backgroundColor: "white"
+                  }
                 }}
                 {...props}
               />
@@ -160,6 +169,11 @@ const Addplansectn = () => {
             sx={{ width: { xs: "100%", md: "90%" }, borderRadius: "7px" }}
             name="breakfast"
           />
+          {errors.breakfast && (
+            <Typography component="p" sx={{ color: "red" }}>
+              {errors.breakfast}
+            </Typography>
+          )}
         </FormControl>
 
         <FormControl sx={{ width: "100%", paddingTop: "30px" }}>
@@ -169,6 +183,11 @@ const Addplansectn = () => {
             sx={{ width: { xs: "100%", md: "90%" }, borderRadius: "7px" }}
             name="snack1"
           />
+          {errors.snack1 && (
+            <Typography component="p" sx={{ color: "red" }}>
+              {errors.snack1}
+            </Typography>
+          )}
         </FormControl>
 
         <FormControl sx={{ width: "100%", paddingTop: "30px" }}>
@@ -178,6 +197,11 @@ const Addplansectn = () => {
             sx={{ width: { xs: "100%", md: "90%" }, borderRadius: "7px" }}
             name="lunch"
           />
+          {errors.lunch && (
+            <Typography component="p" sx={{ color: "red" }}>
+              {errors.lunch}
+            </Typography>
+          )}
         </FormControl>
 
         <FormControl sx={{ width: "100%", paddingTop: "30px" }}>
@@ -187,6 +211,11 @@ const Addplansectn = () => {
             sx={{ width: { xs: "100%", md: "90%" }, borderRadius: "7px" }}
             name="snack2"
           />
+          {errors.snack2 && (
+            <Typography component="p" sx={{ color: "red" }}>
+              {errors.snack2}
+            </Typography>
+          )}
         </FormControl>
 
         <FormControl sx={{ width: "100%", paddingTop: "30px" }}>
@@ -196,6 +225,11 @@ const Addplansectn = () => {
             sx={{ width: { xs: "100%", md: "90%" }, borderRadius: "7px" }}
             name="dinner"
           />
+          {errors.dinner && (
+            <Typography component="p" sx={{ color: "red" }}>
+              {errors.dinner}
+            </Typography>
+          )}
         </FormControl>
         <FormControl sx={{ width: "100%", paddingTop: "30px" }}>
           <FormLabel sx={{ color: "rgba(48, 48, 48, 1)" }}>Snack 3</FormLabel>
@@ -204,6 +238,11 @@ const Addplansectn = () => {
             sx={{ width: { xs: "100%", md: "90%" }, borderRadius: "7px" }}
             name="snack3"
           />
+          {errors.snack3 && (
+            <Typography component="p" sx={{ color: "red" }}>
+              {errors.snack3}
+            </Typography>
+          )}
         </FormControl>
       </Divstyle>
 
@@ -215,6 +254,11 @@ const Addplansectn = () => {
             type="number"
             name="calories"
           />
+          {errors.calories && (
+            <Typography component="p" sx={{ color: "red" }}>
+              {errors.calories}
+            </Typography>
+          )}
         </FormControl>
 
         <Box sx={{ display: { md: "flex" }, width: { md: "93%" } }}>
@@ -229,16 +273,21 @@ const Addplansectn = () => {
                     sx={{
                       color: "rgba(177, 177, 177, 1)",
                       fontWeight: "400",
-                      display: { xs: "none", md: "flex", alignItems: "center" },
+                      display: { xs: "none", md: "flex", alignItems: "center" }
                     }}
                   >
                     G
                   </InputAdornment>
-                ),
+                )
               }}
               sx={{ width: { xs: "100%", md: "90%" } }}
               name="fat"
             />
+            {errors.fat && (
+              <Typography component="p" sx={{ color: "red", fontSize: "10px" }}>
+                {errors.fat}
+              </Typography>
+            )}
           </FormControl>
           <FormControl sx={{ width: "100%", paddingTop: "30px" }}>
             <FormLabel sx={{ color: "rgba(48, 48, 48, 1)" }}>Cabs</FormLabel>
@@ -251,16 +300,21 @@ const Addplansectn = () => {
                     sx={{
                       color: "rgba(177, 177, 177, 1)",
                       fontWeight: "400",
-                      display: { xs: "none", md: "flex", alignItems: "center" },
+                      display: { xs: "none", md: "flex", alignItems: "center" }
                     }}
                   >
                     G
                   </InputAdornment>
-                ),
+                )
               }}
               sx={{ width: { xs: "100%", md: "90%" } }}
               name="cabs"
             />
+            {errors.cabs && (
+              <Typography component="p" sx={{ color: "red", fontSize: "10px" }}>
+                {errors.cabs}
+              </Typography>
+            )}
           </FormControl>
           <FormControl sx={{ width: "100%", paddingTop: "30px" }}>
             <FormLabel sx={{ color: "rgba(48, 48, 48, 1)" }}>Protein</FormLabel>
@@ -273,16 +327,21 @@ const Addplansectn = () => {
                     sx={{
                       color: "rgba(177, 177, 177, 1)",
                       fontWeight: "400",
-                      display: { xs: "none", md: "flex", alignItems: "center" },
+                      display: { xs: "none", md: "flex", alignItems: "center" }
                     }}
                   >
                     G
                   </InputAdornment>
-                ),
+                )
               }}
               sx={{ width: { xs: "100%", md: "90%" } }}
               name="protein"
             />
+            {errors.protein && (
+              <Typography component="p" sx={{ color: "red", fontSize: "10px" }}>
+                {errors.protein}
+              </Typography>
+            )}
           </FormControl>
         </Box>
         <Box sx={{ display: { md: "flex", justifyContent: "center" } }}>
@@ -293,7 +352,7 @@ const Addplansectn = () => {
               margin: "30px 0",
               padding: "20px 0",
               marginRight: "45px",
-              borderRadius: "7px",
+              borderRadius: "7px"
             }}
             type="submit"
           >
@@ -301,7 +360,7 @@ const Addplansectn = () => {
               variant="body2"
               sx={{
                 color: "rgba(255, 255, 255, 1)",
-                textTransform: "capitalize",
+                textTransform: "capitalize"
               }}
             >
               Create Plan
@@ -311,7 +370,7 @@ const Addplansectn = () => {
       </Divstyle>
       <ToastContainer />
     </Sectionstyle>
-  );
-};
+  )
+}
 
-export default Addplansectn;
+export default Addplansectn
