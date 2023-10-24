@@ -1,6 +1,8 @@
 export default function Validation(values) {
   const errors = {}
 
+  const number_pattern = /^[1-9]+[0-9]*$/
+
   if (values.title === "") {
     errors.title = "Title cannot be empty"
   }
@@ -31,15 +33,14 @@ export default function Validation(values) {
 
   if (values.calories === "") {
     errors.calories = "Calories cannot be empty"
-  }
-  if (typeof values.calories !== "number") {
+  } else if (typeof values.calories !== "number") {
     errors.calories = "Calories can only be a number"
   }
 
   if (values.fat < 1) {
     errors.fat = "Value must be greater than 0"
-  } else if (values.fat === "" || values.calories.length === 0) {
-    errors.fat = "Fat cannot be empty"
+  } else if (!number_pattern.test(values.fat)) {
+    errors.fat = "Fat can only accept number"
   }
 
   if (values.cabs < 1) {
