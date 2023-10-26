@@ -1,5 +1,4 @@
-import { addMealPlan } from "./planService";
-
+import { addMealPlan, getAllMealPlans } from "./planService";
 const { createSlice, createAsyncThunk } = require("@reduxjs/toolkit");
 
 const initialState = {
@@ -16,6 +15,24 @@ export const createAMealPlan = createAsyncThunk(
   async (data, thunkAPI) => {
     try {
       return await addMealPlan(data);
+    } catch (error) {
+      const message =
+        (error.response &&
+          error.response.data &&
+          error.response.data.message) ||
+        error.message ||
+        error.toString();
+      return thunkAPI.rejectWithValue(message);
+    }
+  }
+);
+
+//get all meal plans
+export const allMealPlans = createAsyncThunk(
+  "/all-meals",
+  async (data, thunkAPI) => {
+    try {
+      return await getAllMealPlans();
     } catch (error) {
       const message =
         (error.response &&
@@ -48,6 +65,22 @@ const planSlice = createSlice({
         state.message = action.payload.message;
       })
       .addCase(createAMealPlan.rejected, (state, action) => {
+        state.isError = true;
+        state.isSuccess = false;
+        state.message = action.payload;
+      })
+      .addCase(allMealPlans.pending, (state) => {
+        state.isLoading = true;
+      })
+      .addCase(allMealPlans.fulfilled, (state, action) => {
+        action.payload.success
+          ? (state.isSuccess = true)
+          : (state.isSuccess = false);
+        state.isLoading = false;
+        state.plan = action.payload.data;
+        state.message = action.payload.message;
+      })
+      .addCase(allMealPlans.rejected, (state, action) => {
         state.isError = true;
         state.isSuccess = false;
         state.message = action.payload;

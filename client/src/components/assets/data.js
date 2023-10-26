@@ -3,9 +3,6 @@ import rectanglered from "../assets/images/Rectangle red.png";
 import rectangleblue from "../assets/images/Rectangle blue.png";
 import rectanglegreen from "../assets/images/Rectangle green.png";
 import healingTumeric from "../assets/images/healing-turmeric-cauliflower-soup.png";
-import mealimage from "../assets/images/mealimage.svg";
-import deleteImg from "../assets/images/deleteImg.png";
-import editImg from "../assets/images/editImg.png";
 
 const Days = [
   "monday",
@@ -68,91 +65,4 @@ const food = [
   },
 ];
 
-const lists = [
-  {
-    Image: mealimage,
-    mealplan: "Low carb meal plan",
-    editimg: editImg,
-    deleteimg: deleteImg,
-  },
-  {
-    Image: mealimage,
-    mealplan: "Low carb meal plan",
-    editimg: editImg,
-    deleteimg: deleteImg,
-  },
-  {
-    Image: mealimage,
-    mealplan: "Low carb meal plan",
-    editimg: editImg,
-    deleteimg: deleteImg,
-  },
-  {
-    Image: mealimage,
-    mealplan: "Low carb meal plan",
-    editimg: editImg,
-    deleteimg: deleteImg,
-  },
-  {
-    Image: mealimage,
-    mealplan: "Low carb meal plan",
-    editimg: editImg,
-    deleteimg: deleteImg,
-  },
-  {
-    Image: mealimage,
-    mealplan: "Low carb meal plan",
-    editimg: editImg,
-    deleteimg: deleteImg,
-  },
-  {
-    Image: mealimage,
-    mealplan: "Low carb meal plan",
-    editimg: editImg,
-    deleteimg: deleteImg,
-  },
-  {
-    Image: mealimage,
-    mealplan: "Low carb meal plan",
-    editimg: editImg,
-    deleteimg: deleteImg,
-  },
-  {
-    Image: mealimage,
-    mealplan: "Low carb meal plan",
-    editimg: editImg,
-    deleteimg: deleteImg,
-  },
-  {
-    Image: mealimage,
-    mealplan: "Low carb meal plan",
-    editimg: editImg,
-    deleteimg: deleteImg,
-  },
-  {
-    Image: mealimage,
-    mealplan: "Low carb meal plan",
-    editimg: editImg,
-    deleteimg: deleteImg,
-  },
-  {
-    Image: mealimage,
-    mealplan: "Low carb meal plan",
-    editimg: editImg,
-    deleteimg: deleteImg,
-  },
-  {
-    Image: mealimage,
-    mealplan: "Low carb meal plan",
-    editimg: editImg,
-    deleteimg: deleteImg,
-  },
-  {
-    Image: mealimage,
-    mealplan: "Low carb meal plan",
-    editimg: editImg,
-    deleteimg: deleteImg,
-  },
-];
-
-export { Days, Details, lists, food, Date };
+export { Days, Details, food, Date };

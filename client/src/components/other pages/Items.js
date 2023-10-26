@@ -1,8 +1,11 @@
 import { Box, Divider, Typography } from "@mui/material";
 import React from "react";
 import { Link } from "react-router-dom";
+import mealImage from "../assets/images/mealimage.svg";
+import deleteImg from "../assets/images/deleteImg.png";
+import editImg from "../assets/images/editImg.png";
 
-const Items = ({ Image, mealplan, editimg, deleteimg }) => {
+const Items = ({ id, title }) => {
   return (
     <Box
       sx={{
@@ -14,8 +17,8 @@ const Items = ({ Image, mealplan, editimg, deleteimg }) => {
         borderColor: { md: "rgba(236, 236, 236, 1)" },
       }}
     >
-      <Link to={`plan/detail/${mealplan}`}>
-        <img src={Image} width={60} alt={mealplan} />
+      <Link to={`plan/detail/${id}`}>
+        <img src={mealImage} width={60} alt={title} />
       </Link>
 
       <Box
@@ -26,7 +29,7 @@ const Items = ({ Image, mealplan, editimg, deleteimg }) => {
           justifyContent: "space-between",
         }}
       >
-        <Link to={`plan/detail/${mealplan}`}>
+        <Link to={`plan/detail/${id}`}>
           <Box
             sx={{
               display: "flex",
@@ -42,7 +45,7 @@ const Items = ({ Image, mealplan, editimg, deleteimg }) => {
                 fontWeight: "400",
               }}
             >
-              {mealplan}
+              {title}
             </Typography>
           </Box>
         </Link>
@@ -55,7 +58,7 @@ const Items = ({ Image, mealplan, editimg, deleteimg }) => {
               alignItems: "center",
             }}
           >
-            <img src={editimg} alt="" width={10} height={10} />
+            <img src={editImg} alt="" width={10} height={10} />
             <Typography
               sx={{
                 display: { xs: "none", md: "block" },
@@ -81,7 +84,7 @@ const Items = ({ Image, mealplan, editimg, deleteimg }) => {
             }}
           />
           <Box sx={{ display: "flex", alignItems: "center" }}>
-            <img src={deleteimg} alt="" />
+            <img src={deleteImg} alt="" />
             <Typography
               sx={{
                 display: { xs: "none", md: "block" },
