@@ -9,36 +9,7 @@ import { deleteAMealPlan } from "../../store/features/plan/planSlice";
 import EditPopUp from "./EditPopUp";
 
 const Items = ({ item }) => {
-  const [
-    id,
-    title,
-    calories,
-    fat,
-    cabs,
-    protein,
-    days,
-    breakfast,
-    lunch,
-    dinner,
-    snack1,
-    snack2,
-    snack3,
-  ] = item;
-  console.log(
-    id,
-    title,
-    calories,
-    fat,
-    cabs,
-    protein,
-    days,
-    breakfast,
-    lunch,
-    dinner,
-    snack1,
-    snack2,
-    snack3
-  );
+  const [id, title] = item;
 
   const dispatch = useDispatch();
   const [openEdit, setOpenEdit] = useState(false);
@@ -148,7 +119,9 @@ const Items = ({ item }) => {
           </Box>
         </Box>
       </Box>
-      {openEdit && <EditPopUp setOpenEdit={setOpenEdit} openEdit={openEdit} />}
+      {openEdit && (
+        <EditPopUp setOpenEdit={setOpenEdit} openEdit={openEdit} item={item} />
+      )}
     </Box>
   );
 };

@@ -1,5 +1,5 @@
 import { toast } from "react-toastify";
-import { deleteMealPlan } from "./planService";
+import { deleteMealPlan, editMealPlan } from "./planService";
 import { addMealPlan, getAllMealPlans } from "./planService";
 const { createSlice, createAsyncThunk } = require("@reduxjs/toolkit");
 
@@ -66,6 +66,24 @@ export const deleteAMealPlan = createAsyncThunk(
   }
 );
 
+//edit a meal plan
+export const editAmealPlan = createAsyncThunk(
+  "/edit-meal",
+  async (data, thunkAPI) => {
+    try {
+      return await editMealPlan(data.data, data.id);
+    } catch (error) {
+      const message =
+        (error.response &&
+          error.response.data &&
+          error.response.data.message) ||
+        error.message ||
+        error.toString();
+      return thunkAPI.rejectWithValue(message);
+    }
+  }
+);
+
 const planSlice = createSlice({
   initialState,
   name: "plan",
@@ -119,6 +137,40 @@ const planSlice = createSlice({
         toast.success(action.payload.message);
       })
       .addCase(deleteAMealPlan.rejected, (state, action) => {
+        state.isError = true;
+        state.isSuccess = false;
+        toast.error(action.payload);
+      })
+      .addCase(editAmealPlan.pending, (state) => {
+        state.isLoading = true;
+        state.isSuccess = false;
+      })
+      .addCase(editAmealPlan.fulfilled, (state, action) => {
+        state.isLoading = false;
+
+        if (action.payload.success) {
+          toast.success(action.payload.message);
+
+          // let newPlanList = state.plans.map((plan) => {
+
+          //   if (plan.id === action.meta.arg.id) {
+          //     plan = {
+          //       ...action.meta.arg.id,
+          //       ...action.meta.arg.data,
+          //     };
+          //     console.log("here");
+          //   }
+
+          //   return plan;
+          // });
+
+          // console.log(state.plans);
+          state.change = !state.change;
+        } else {
+          toast.error(action.payload.message);
+        }
+      })
+      .addCase(editAmealPlan.rejected, (state, action) => {
         state.isError = true;
         state.isSuccess = false;
         toast.error(action.payload);
