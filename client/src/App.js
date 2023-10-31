@@ -13,6 +13,8 @@ import NotFound from "./components/shared/NotFound";
 import { Layout } from "./components/shared/Layout";
 import { Provider } from "react-redux";
 import store from "./store/store";
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 function App() {
   return (
@@ -29,6 +31,7 @@ function App() {
             </Routes>
           </Layout>
         </Provider>
+        <ToastContainer />
       </ThemeProvider>
     </>
   );

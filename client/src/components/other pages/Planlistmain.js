@@ -7,10 +7,10 @@ import { allMealPlans } from "../../store/features/plan/planSlice";
 
 const Planlistmain = () => {
   const dispatch = useDispatch();
-  const { plan } = useSelector((state) => state.plan);
+  const { plans, change } = useSelector((state) => state.plans);
   useEffect(() => {
     dispatch(allMealPlans({}));
-  }, [dispatch]);
+  }, [dispatch, change]);
 
   return (
     <Box
@@ -30,10 +30,9 @@ const Planlistmain = () => {
         borderRadius: { md: "13px" },
       }}
     >
-      {plan.map((item, i) => {
-        const [id, title] = item;
-        return <Items key={i} id={id} title={title} />;
-      })}
+      {plans.map((item, i) => (
+        <Items key={i} item={item} />
+      ))}
       <Box
         sx={{
           position: "sticky",

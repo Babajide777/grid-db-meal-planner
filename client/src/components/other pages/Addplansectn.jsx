@@ -12,11 +12,9 @@ import {
 import { Days } from "../assets/data";
 import Paper from "@mui/material/Paper";
 import ClearIcon from "@mui/icons-material/Clear";
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { createAMealPlan, reset } from "../../store/features/plan/planSlice";
-import { ToastContainer, toast } from "react-toastify";
-import "react-toastify/dist/ReactToastify.css";
+import { createAMealPlan } from "../../store/features/plan/planSlice";
 import { useNavigate } from "react-router-dom";
 
 const Sectionstyle = styled("form")(({ theme }) => ({
@@ -41,6 +39,7 @@ const Addplansectn = () => {
   const [selectedValues, setSelectedValues] = useState([]);
   const dispatch = useDispatch();
   const navigate = useNavigate();
+
   const handleSubmit = (e) => {
     e.preventDefault();
     const data = Object.fromEntries(new FormData(e.currentTarget));
@@ -65,22 +64,13 @@ const Addplansectn = () => {
     setSelectedValues(newValue);
   };
 
-  const { plan, isError, isSuccess, message } = useSelector(
-    (state) => state.plan
-  );
+  const { isSuccess } = useSelector((state) => state.plans);
 
-  useEffect(() => {
-    if (isError) toast.error(message);
-    if (isSuccess) {
-      toast.success(message);
-      setTimeout(() => {
-        navigate("/");
-      }, 3000);
-      dispatch(reset);
-    } else {
-      toast.error(message);
-    }
-  }, [plan, isError, isSuccess, message, navigate, dispatch]);
+  if (isSuccess) {
+    setTimeout(() => {
+      navigate("/");
+    }, 3000);
+  }
 
   return (
     <Sectionstyle onSubmit={handleSubmit}>
@@ -309,7 +299,6 @@ const Addplansectn = () => {
           </Button>
         </Box>
       </Divstyle>
-      <ToastContainer />
     </Sectionstyle>
   );
 };

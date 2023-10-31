@@ -2,8 +2,11 @@ import { AppBar, Box, Button, Divider, Typography } from "@mui/material";
 import AddIcon from "@mui/icons-material/Add";
 import React from "react";
 import { Link } from "react-router-dom";
+import { useSelector } from "react-redux";
 
 const Planaddplan = () => {
+  const { plans } = useSelector((state) => state.plans);
+
   return (
     <AppBar
       position="static"
@@ -45,7 +48,7 @@ const Planaddplan = () => {
               fontSize: "13px",
             }}
           >
-            14 plans
+            {plans.length} plans
           </Typography>
         </Box>
       </Box>

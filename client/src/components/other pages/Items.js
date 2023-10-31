@@ -1,11 +1,52 @@
 import { Box, Divider, Typography } from "@mui/material";
-import React from "react";
+import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import mealImage from "../assets/images/mealimage.svg";
 import deleteImg from "../assets/images/deleteImg.png";
 import editImg from "../assets/images/editImg.png";
+import { useDispatch } from "react-redux";
+import { deleteAMealPlan } from "../../store/features/plan/planSlice";
+import EditPopUp from "./EditPopUp";
 
-const Items = ({ id, title }) => {
+const Items = ({ item }) => {
+  const [
+    id,
+    title,
+    calories,
+    fat,
+    cabs,
+    protein,
+    days,
+    breakfast,
+    lunch,
+    dinner,
+    snack1,
+    snack2,
+    snack3,
+  ] = item;
+  console.log(
+    id,
+    title,
+    calories,
+    fat,
+    cabs,
+    protein,
+    days,
+    breakfast,
+    lunch,
+    dinner,
+    snack1,
+    snack2,
+    snack3
+  );
+
+  const dispatch = useDispatch();
+  const [openEdit, setOpenEdit] = useState(false);
+
+  const handleDelete = () => {
+    dispatch(deleteAMealPlan(id));
+  };
+
   return (
     <Box
       sx={{
@@ -56,7 +97,9 @@ const Items = ({ id, title }) => {
               paddingRight: { xs: "20px", md: "0" },
               display: "flex",
               alignItems: "center",
+              cursor: "pointer",
             }}
+            onClick={() => setOpenEdit(true)}
           >
             <img src={editImg} alt="" width={10} height={10} />
             <Typography
@@ -72,6 +115,7 @@ const Items = ({ id, title }) => {
               Edit
             </Typography>
           </Box>
+
           <Divider
             orientation="vertical"
             sx={{
@@ -83,7 +127,11 @@ const Items = ({ id, title }) => {
               display: { xs: "none", md: "block" },
             }}
           />
-          <Box sx={{ display: "flex", alignItems: "center" }}>
+
+          <Box
+            sx={{ display: "flex", alignItems: "center", cursor: "pointer" }}
+            onClick={handleDelete}
+          >
             <img src={deleteImg} alt="" />
             <Typography
               sx={{
@@ -100,6 +148,7 @@ const Items = ({ id, title }) => {
           </Box>
         </Box>
       </Box>
+      {openEdit && <EditPopUp setOpenEdit={setOpenEdit} openEdit={openEdit} />}
     </Box>
   );
 };
