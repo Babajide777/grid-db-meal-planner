@@ -1,5 +1,5 @@
 import { toast } from "react-toastify";
-import { deleteMealPlan, editMealPlan } from "./planService";
+import { deleteMealPlan, editMealPlan, getMealPlan } from "./planService";
 import { addMealPlan, getAllMealPlans } from "./planService";
 const { createSlice, createAsyncThunk } = require("@reduxjs/toolkit");
 
@@ -10,6 +10,7 @@ const initialState = {
   isLoading: false,
   message: "",
   change: false,
+  singlePlan: [],
 };
 
 //create a meal plan
@@ -72,6 +73,24 @@ export const editAmealPlan = createAsyncThunk(
   async (data, thunkAPI) => {
     try {
       return await editMealPlan(data.data, data.id);
+    } catch (error) {
+      const message =
+        (error.response &&
+          error.response.data &&
+          error.response.data.message) ||
+        error.message ||
+        error.toString();
+      return thunkAPI.rejectWithValue(message);
+    }
+  }
+);
+
+//Get a meal plan
+export const getAmealPlan = createAsyncThunk(
+  "/get-a-meal",
+  async (data, thunkAPI) => {
+    try {
+      return await getMealPlan(data);
     } catch (error) {
       const message =
         (error.response &&
@@ -171,6 +190,19 @@ const planSlice = createSlice({
         }
       })
       .addCase(editAmealPlan.rejected, (state, action) => {
+        state.isError = true;
+        state.isSuccess = false;
+        toast.error(action.payload);
+      })
+      .addCase(getAmealPlan.pending, (state) => {
+        state.isLoading = true;
+        state.isSuccess = false;
+      })
+      .addCase(getAmealPlan.fulfilled, (state, action) => {
+        state.isLoading = false;
+        state.singlePlan = action.payload.data;
+      })
+      .addCase(getAmealPlan.rejected, (state, action) => {
         state.isError = true;
         state.isSuccess = false;
         toast.error(action.payload);

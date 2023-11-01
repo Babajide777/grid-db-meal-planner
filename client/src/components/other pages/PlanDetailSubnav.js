@@ -1,11 +1,25 @@
-import React from "react"
-import { AppBar, Box, Button, Divider, Typography } from "@mui/material"
-import ArrowBackIosNewIcon from "@mui/icons-material/ArrowBackIosNew"
-import Edit from "../assets/images/editImg.png"
-import Delete from "../assets/images/deleteImg.png"
-import Share from "../assets/images/shareImg.png"
+import React, { useState } from "react";
+import { AppBar, Box, Button, Divider, Typography } from "@mui/material";
+import ArrowBackIosNewIcon from "@mui/icons-material/ArrowBackIosNew";
+import Edit from "../assets/images/editImg.png";
+import Delete from "../assets/images/deleteImg.png";
+import Share from "../assets/images/shareImg.png";
+import EditPopUp from "./EditPopUp";
+import { useDispatch } from "react-redux";
+import { deleteAMealPlan } from "../../store/features/plan/planSlice";
+import { useNavigate } from "react-router-dom";
 
-const PlanDetailSubnav = () => {
+const PlanDetailSubnav = ({ id, title, item }) => {
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+
+  const [openEdit, setOpenEdit] = useState(false);
+
+  const handleDelete = () => {
+    dispatch(deleteAMealPlan(id));
+    navigate("/");
+  };
+
   return (
     <AppBar
       position="static"
@@ -15,7 +29,7 @@ const PlanDetailSubnav = () => {
         display: "flex",
         flexDirection: "row",
         justifyContent: "space-between",
-        padding: "10px 20px"
+        padding: "10px 20px",
       }}
     >
       <Box
@@ -25,14 +39,14 @@ const PlanDetailSubnav = () => {
           color: "rgba(73, 73, 73, 1)",
           padding: "20px 0",
           fontWeight: "400",
-          display: "flex"
+          display: "flex",
         }}
       >
         <ArrowBackIosNewIcon
           sx={{
             marginRight: "20px",
             display: { md: "none" },
-            fontSize: "22px"
+            fontSize: "22px",
           }}
         />
         <Divider
@@ -42,11 +56,13 @@ const PlanDetailSubnav = () => {
             height: "20px",
             backgroundColor: "rgba(134, 197, 47, 1)",
             border: "none",
-            margin: "0 10px"
+            margin: "0 10px",
           }}
         />
         <Box>
-          <Typography component="p"> Low carb meal plan</Typography>
+          <Typography component="p" textTransform="uppercase">
+            {title}
+          </Typography>
         </Box>
       </Box>
 
@@ -57,11 +73,11 @@ const PlanDetailSubnav = () => {
             xs: "none",
             md: "flex",
             justifyContent: "center",
-            alignItems: "center"
-          }
+            alignItems: "center",
+          },
         }}
       >
-        <Box sx={{}}>
+        <Box sx={{ cursor: "pointer" }} onClick={() => setOpenEdit(true)}>
           <img src={Edit} alt="editImg" width={12} height={12} />
           <Typography
             component="span"
@@ -69,13 +85,17 @@ const PlanDetailSubnav = () => {
               color: "rgba(149, 149, 149, 1)",
               fontWeight: "300",
               fontSize: "15px",
-              marginLeft: "5px"
+              marginLeft: "5px",
             }}
           >
             Edit
           </Typography>
         </Box>
-        <Box sx={{ padding: "0 10px" }}>
+
+        <Box
+          sx={{ padding: "0 10px", cursor: "pointer" }}
+          onClick={handleDelete}
+        >
           <img src={Delete} alt="deleteImg" width={12} height={12} />
           <Typography
             component="span"
@@ -83,19 +103,20 @@ const PlanDetailSubnav = () => {
               color: "rgba(149, 149, 149, 1)",
               fontWeight: "300",
               fontSize: "15px",
-              marginLeft: "5px"
+              marginLeft: "5px",
             }}
           >
             Delete
           </Typography>
         </Box>
+
         <Box>
           <Button
             sx={{
               backgroundColor: "rgba(134, 197, 47, 1)",
               padding: "15px 20px",
               display: "flex",
-              alignItems: "center"
+              alignItems: "center",
             }}
           >
             <img src={Share} alt="shareImg" width={20} height={20} />
@@ -107,7 +128,7 @@ const PlanDetailSubnav = () => {
                 textTransform: "capitalize",
                 fontWeight: "300",
                 fontSize: "18px",
-                marginLeft: "5px"
+                marginLeft: "5px",
               }}
             >
               Share
@@ -115,8 +136,12 @@ const PlanDetailSubnav = () => {
           </Button>
         </Box>
       </Box>
-    </AppBar>
-  )
-}
 
-export default PlanDetailSubnav
+      {openEdit && (
+        <EditPopUp setOpenEdit={setOpenEdit} openEdit={openEdit} item={item} />
+      )}
+    </AppBar>
+  );
+};
+
+export default PlanDetailSubnav;
