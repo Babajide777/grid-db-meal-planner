@@ -16,6 +16,7 @@ import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { createAMealPlan } from "../../store/features/plan/planSlice";
 import { useNavigate } from "react-router-dom";
+import Validation from "./Validation";
 
 const Sectionstyle = styled("form")(({ theme }) => ({
   margin: "0 auto",
@@ -37,6 +38,8 @@ const Divstyle = styled("div")(({ theme }) => ({
 
 const Addplansectn = () => {
   const [selectedValues, setSelectedValues] = useState([]);
+  const [errors, setErrors] = useState({});
+
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
@@ -57,7 +60,12 @@ const Addplansectn = () => {
       snack2: data.snack2,
       snack3: data.snack3,
     };
-    dispatch(createAMealPlan(newData));
+
+    setErrors(Validation(newData));
+
+    if (Object.getOwnPropertyNames(Validation(newData)).length === 0) {
+      dispatch(createAMealPlan(newData));
+    }
   };
 
   const handleAutocompleteChange = (event, newValue) => {
@@ -82,6 +90,11 @@ const Addplansectn = () => {
             sx={{ width: { xs: "100%", md: "90%" }, borderRadius: "7px" }}
             name="title"
           />
+          {errors.title && (
+            <Typography component="p" sx={{ color: "red" }}>
+              {errors.title}
+            </Typography>
+          )}
         </FormControl>
 
         <Box sx={{ margin: "30px 0" }}>
@@ -137,6 +150,11 @@ const Addplansectn = () => {
             )}
             value={selectedValues}
           />
+          {errors.days && (
+            <Typography component="p" sx={{ color: "red" }}>
+              {errors.days}
+            </Typography>
+          )}
         </Box>
 
         <Typography variant="h6" sx={{ fontWeight: "300" }}>
@@ -150,6 +168,11 @@ const Addplansectn = () => {
             sx={{ width: { xs: "100%", md: "90%" }, borderRadius: "7px" }}
             name="breakfast"
           />
+          {errors.breakfast && (
+            <Typography component="p" sx={{ color: "red" }}>
+              {errors.breakfast}
+            </Typography>
+          )}
         </FormControl>
 
         <FormControl sx={{ width: "100%", paddingTop: "30px" }}>
@@ -159,6 +182,11 @@ const Addplansectn = () => {
             sx={{ width: { xs: "100%", md: "90%" }, borderRadius: "7px" }}
             name="snack1"
           />
+          {errors.snack1 && (
+            <Typography component="p" sx={{ color: "red" }}>
+              {errors.snack1}
+            </Typography>
+          )}
         </FormControl>
 
         <FormControl sx={{ width: "100%", paddingTop: "30px" }}>
@@ -168,6 +196,11 @@ const Addplansectn = () => {
             sx={{ width: { xs: "100%", md: "90%" }, borderRadius: "7px" }}
             name="lunch"
           />
+          {errors.lunch && (
+            <Typography component="p" sx={{ color: "red" }}>
+              {errors.lunch}
+            </Typography>
+          )}
         </FormControl>
 
         <FormControl sx={{ width: "100%", paddingTop: "30px" }}>
@@ -177,6 +210,11 @@ const Addplansectn = () => {
             sx={{ width: { xs: "100%", md: "90%" }, borderRadius: "7px" }}
             name="snack2"
           />
+          {errors.snack2 && (
+            <Typography component="p" sx={{ color: "red" }}>
+              {errors.snack2}
+            </Typography>
+          )}
         </FormControl>
 
         <FormControl sx={{ width: "100%", paddingTop: "30px" }}>
@@ -186,6 +224,11 @@ const Addplansectn = () => {
             sx={{ width: { xs: "100%", md: "90%" }, borderRadius: "7px" }}
             name="dinner"
           />
+          {errors.dinner && (
+            <Typography component="p" sx={{ color: "red" }}>
+              {errors.dinner}
+            </Typography>
+          )}
         </FormControl>
         <FormControl sx={{ width: "100%", paddingTop: "30px" }}>
           <FormLabel sx={{ color: "rgba(48, 48, 48, 1)" }}>Snack 3</FormLabel>
@@ -194,6 +237,11 @@ const Addplansectn = () => {
             sx={{ width: { xs: "100%", md: "90%" }, borderRadius: "7px" }}
             name="snack3"
           />
+          {errors.snack3 && (
+            <Typography component="p" sx={{ color: "red" }}>
+              {errors.snack3}
+            </Typography>
+          )}
         </FormControl>
       </Divstyle>
 
@@ -205,6 +253,11 @@ const Addplansectn = () => {
             type="number"
             name="calories"
           />
+          {errors.calories && (
+            <Typography component="p" sx={{ color: "red" }}>
+              {errors.calories}
+            </Typography>
+          )}
         </FormControl>
 
         <Box sx={{ display: { md: "flex" }, width: { md: "93%" } }}>
@@ -229,6 +282,11 @@ const Addplansectn = () => {
               sx={{ width: { xs: "100%", md: "90%" } }}
               name="fat"
             />
+            {errors.fat && (
+              <Typography component="p" sx={{ color: "red", fontSize: "10px" }}>
+                {errors.fat}
+              </Typography>
+            )}
           </FormControl>
           <FormControl sx={{ width: "100%", paddingTop: "30px" }}>
             <FormLabel sx={{ color: "rgba(48, 48, 48, 1)" }}>Cabs</FormLabel>
@@ -251,6 +309,11 @@ const Addplansectn = () => {
               sx={{ width: { xs: "100%", md: "90%" } }}
               name="cabs"
             />
+            {errors.cabs && (
+              <Typography component="p" sx={{ color: "red", fontSize: "10px" }}>
+                {errors.cabs}
+              </Typography>
+            )}
           </FormControl>
           <FormControl sx={{ width: "100%", paddingTop: "30px" }}>
             <FormLabel sx={{ color: "rgba(48, 48, 48, 1)" }}>Protein</FormLabel>
@@ -273,6 +336,11 @@ const Addplansectn = () => {
               sx={{ width: { xs: "100%", md: "90%" } }}
               name="protein"
             />
+            {errors.protein && (
+              <Typography component="p" sx={{ color: "red", fontSize: "10px" }}>
+                {errors.protein}
+              </Typography>
+            )}
           </FormControl>
         </Box>
         <Box sx={{ display: { md: "flex", justifyContent: "center" } }}>

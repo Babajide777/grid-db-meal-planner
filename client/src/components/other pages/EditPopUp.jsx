@@ -12,15 +12,18 @@ import {
   FormLabel,
   InputAdornment,
   Paper,
+  Typography,
 } from "@mui/material";
 import ClearIcon from "@mui/icons-material/Clear";
 import { Days } from "../assets/data";
 import { useDispatch } from "react-redux";
 import { editAmealPlan } from "../../store/features/plan/planSlice";
+import Validation from "./Validation";
 
 const EditPopUp = ({ openEdit, setOpenEdit, item }) => {
   const dispatch = useDispatch();
   const [selectedValues, setSelectedValues] = useState([]);
+  const [errors, setErrors] = useState({});
 
   const [
     id,
@@ -60,8 +63,12 @@ const EditPopUp = ({ openEdit, setOpenEdit, item }) => {
       snack3: data.snack3,
     };
 
-    dispatch(editAmealPlan({ data: newData, id }));
-    setOpenEdit(false);
+    setErrors(Validation(newData));
+
+    if (Object.getOwnPropertyNames(Validation(newData)).length === 0) {
+      dispatch(editAmealPlan({ data: newData, id }));
+      setOpenEdit(false);
+    }
   };
 
   const handleAutocompleteChange = (event, newValue) => {
@@ -88,6 +95,11 @@ const EditPopUp = ({ openEdit, setOpenEdit, item }) => {
               name="title"
               defaultValue={title}
             />
+            {errors.title && (
+              <Typography component="p" sx={{ color: "red" }}>
+                {errors.title}
+              </Typography>
+            )}
           </FormControl>
 
           <FormControl sx={{ width: "100%", paddingTop: "30px" }}>
@@ -143,6 +155,11 @@ const EditPopUp = ({ openEdit, setOpenEdit, item }) => {
               )}
               value={selectedValues}
             />
+            {errors.days && (
+              <Typography component="p" sx={{ color: "red" }}>
+                {errors.days}
+              </Typography>
+            )}
           </FormControl>
 
           <FormControl sx={{ width: "100%", paddingTop: "30px" }}>
@@ -155,6 +172,11 @@ const EditPopUp = ({ openEdit, setOpenEdit, item }) => {
               name="breakfast"
               defaultValue={breakfast}
             />
+            {errors.breakfast && (
+              <Typography component="p" sx={{ color: "red" }}>
+                {errors.breakfast}
+              </Typography>
+            )}
           </FormControl>
 
           <FormControl sx={{ width: "100%", paddingTop: "30px" }}>
@@ -165,6 +187,11 @@ const EditPopUp = ({ openEdit, setOpenEdit, item }) => {
               name="snack1"
               defaultValue={snack1}
             />
+            {errors.snack1 && (
+              <Typography component="p" sx={{ color: "red" }}>
+                {errors.snack1}
+              </Typography>
+            )}
           </FormControl>
 
           <FormControl sx={{ width: "100%", paddingTop: "30px" }}>
@@ -175,6 +202,11 @@ const EditPopUp = ({ openEdit, setOpenEdit, item }) => {
               name="lunch"
               defaultValue={lunch}
             />
+            {errors.lunch && (
+              <Typography component="p" sx={{ color: "red" }}>
+                {errors.lunch}
+              </Typography>
+            )}
           </FormControl>
 
           <FormControl sx={{ width: "100%", paddingTop: "30px" }}>
@@ -185,6 +217,11 @@ const EditPopUp = ({ openEdit, setOpenEdit, item }) => {
               name="snack2"
               defaultValue={snack2}
             />
+            {errors.snack2 && (
+              <Typography component="p" sx={{ color: "red" }}>
+                {errors.snack2}
+              </Typography>
+            )}
           </FormControl>
 
           <FormControl sx={{ width: "100%", paddingTop: "30px" }}>
@@ -195,6 +232,11 @@ const EditPopUp = ({ openEdit, setOpenEdit, item }) => {
               name="dinner"
               defaultValue={dinner}
             />
+            {errors.dinner && (
+              <Typography component="p" sx={{ color: "red" }}>
+                {errors.dinner}
+              </Typography>
+            )}
           </FormControl>
 
           <FormControl sx={{ width: "100%", paddingTop: "30px" }}>
@@ -205,6 +247,12 @@ const EditPopUp = ({ openEdit, setOpenEdit, item }) => {
               name="snack3"
               defaultValue={snack3}
             />
+
+            {errors.snack3 && (
+              <Typography component="p" sx={{ color: "red" }}>
+                {errors.snack3}
+              </Typography>
+            )}
           </FormControl>
 
           <FormControl sx={{ width: "100%", paddingTop: "30px" }}>
@@ -217,6 +265,12 @@ const EditPopUp = ({ openEdit, setOpenEdit, item }) => {
               name="calories"
               defaultValue={calories}
             />
+
+            {errors.calories && (
+              <Typography component="p" sx={{ color: "red" }}>
+                {errors.calories}
+              </Typography>
+            )}
           </FormControl>
 
           <FormControl sx={{ width: "100%", paddingTop: "30px" }}>
@@ -241,6 +295,12 @@ const EditPopUp = ({ openEdit, setOpenEdit, item }) => {
               name="fat"
               defaultValue={fat}
             />
+
+            {errors.fat && (
+              <Typography component="p" sx={{ color: "red", fontSize: "10px" }}>
+                {errors.fat}
+              </Typography>
+            )}
           </FormControl>
 
           <FormControl sx={{ width: "100%", paddingTop: "30px" }}>
@@ -265,6 +325,11 @@ const EditPopUp = ({ openEdit, setOpenEdit, item }) => {
               name="cabs"
               defaultValue={cabs}
             />
+            {errors.cabs && (
+              <Typography component="p" sx={{ color: "red", fontSize: "10px" }}>
+                {errors.cabs}
+              </Typography>
+            )}
           </FormControl>
 
           <FormControl sx={{ width: "100%", paddingTop: "30px" }}>
@@ -289,6 +354,12 @@ const EditPopUp = ({ openEdit, setOpenEdit, item }) => {
               name="protein"
               defaultValue={protein}
             />
+
+            {errors.protein && (
+              <Typography component="p" sx={{ color: "red", fontSize: "10px" }}>
+                {errors.protein}
+              </Typography>
+            )}
           </FormControl>
         </DialogContent>
         <DialogActions>
