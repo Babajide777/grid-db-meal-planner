@@ -10,7 +10,9 @@
   "keywords": [
     "meal-planner",
     "meal",
-    "planner"
+    "planner",
+    "griddb",
+    "griddb_node"
   ],
   "author": "Oyafemi Babajide",
   "license": "ISC",
@@ -20,7 +22,6 @@
     "griddb_node": "^0.8.4",
     "griddb-node-api": "^0.8.6",
     "joi": "^17.11.0",
-    "mongoose": "^7.5.3",
     "morgan": "^1.10.0",
     "uuid": "^9.0.1"
   },
