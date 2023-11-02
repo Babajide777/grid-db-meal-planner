@@ -114,7 +114,9 @@ async function containersInfo(store) {
  */
 async function insert(data, container) {
   try {
-    await container.put(data);
+    let savedData = await container.put(data);
+
+	  console.log(savedData)
     return { status: true };
   } catch (err) {
     if (err.constructor.name == "GSException") {
