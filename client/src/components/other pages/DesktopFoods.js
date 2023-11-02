@@ -1,8 +1,12 @@
-import { Box, Card, Typography } from "@mui/material"
-import Union from "../assets/images/Union.png"
-import React from "react"
+import { Box, Card, Typography } from "@mui/material";
+import Union from "../assets/images/Union.png";
+import React from "react";
 
-const DesktopFoods = ({ heading, image, name }) => {
+const DesktopFoods = ({ heading, image, name, days }) => {
+  if (days) {
+    console.log(days.split(";"));
+  }
+
   return (
     <Card
       orientation="horizontal"
@@ -13,7 +17,8 @@ const DesktopFoods = ({ heading, image, name }) => {
         padding: "15px",
         display: "flex",
         flexDirection: "column",
-        margin: "10px 0"
+        margin: "10px 0",
+        opacity: 0.4,
       }}
     >
       <Box
@@ -21,7 +26,7 @@ const DesktopFoods = ({ heading, image, name }) => {
           display: "flex",
           justifyContent: "space-between",
           alignItems: "center",
-          padding: "10px 0"
+          padding: "10px 0",
         }}
       >
         <Typography component="h4">{heading}</Typography>
@@ -37,7 +42,7 @@ const DesktopFoods = ({ heading, image, name }) => {
         {name}
       </Typography>
     </Card>
-  )
-}
+  );
+};
 
-export default DesktopFoods
+export default DesktopFoods;

@@ -10,7 +10,21 @@ const initialState = {
   isLoading: false,
   message: "",
   change: false,
-  singlePlan: [],
+  singlePlan: [
+    "",
+    "",
+    2,
+    2,
+    2,
+    2,
+    "wednesday;thursday",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+  ],
 };
 
 //create a meal plan

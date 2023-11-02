@@ -13,21 +13,7 @@ const PlanDetails = () => {
 
   const { singlePlan } = useSelector((state) => state.plans);
 
-  const [
-    uid,
-    title,
-    calories,
-    fat,
-    cabs,
-    protein,
-    days,
-    breakfast,
-    lunch,
-    dinner,
-    snack1,
-    snack2,
-    snack3,
-  ] = singlePlan;
+  const title = singlePlan[1];
 
   useEffect(() => {
     dispatch(getAmealPlan(id));
@@ -45,7 +31,7 @@ const PlanDetails = () => {
         <PlanDetailSubnav id={id} title={title} item={singlePlan} />
       </Box>
       <PlanDetailMain />
-      <PlanDetailDesktop />
+      <PlanDetailDesktop singlePlan={singlePlan} />
     </Box>
   );
 };

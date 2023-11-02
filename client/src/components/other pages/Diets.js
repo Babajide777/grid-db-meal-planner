@@ -1,16 +1,22 @@
-import { Box } from "@mui/material"
-import { Details } from "../assets/data"
-import React from "react"
-import DesktopWeeks from "./DesktopWeeks"
+import { Box } from "@mui/material";
+import React from "react";
+import DesktopWeeks from "./DesktopWeeks";
 
-const Diets = () => {
+const Diets = ({ calories, fat, cabs, protein }) => {
   return (
     <Box>
-      {Details.map((item, i) => (
-        <DesktopWeeks key={i} {...item} />
+      {Array.from({ length: 6 }, (_, i) => (
+        <DesktopWeeks
+          key={i}
+          calories={calories}
+          fat={fat}
+          cabs={cabs}
+          protein={protein}
+          i={i}
+        />
       ))}
     </Box>
-  )
-}
+  );
+};
 
-export default Diets
+export default Diets;
