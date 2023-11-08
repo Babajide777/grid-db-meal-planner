@@ -30,9 +30,10 @@ const Planlistmain = () => {
         borderRadius: { md: "13px" },
       }}
     >
-      {plans.map((item, i) => (
-        <Items key={i} item={item} />
-      ))}
+      {plans.length < 1
+        ? null
+        : plans.map((item, i) => <Items key={i} item={item} />)}
+
       <Box
         sx={{
           position: "sticky",

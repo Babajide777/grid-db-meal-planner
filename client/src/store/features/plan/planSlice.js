@@ -151,6 +151,7 @@ const planSlice = createSlice({
         state.isSuccess = false;
       })
       .addCase(allMealPlans.fulfilled, (state, action) => {
+        console.log(action.payload);
         state.isLoading = false;
         state.plans = action.payload.data;
       })
