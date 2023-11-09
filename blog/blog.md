@@ -204,7 +204,7 @@ If you installed nodemon, you could use ‘npm start’ to start the application
 npm run dev
 ```
 
-![Image](https://github.com/Babajide777/grid-db-meal-planner/blog/images/1.jpg)
+![Image](/blog/images/1.jpg)
 
 ### Step 5: Setup the GridDB Database
 
@@ -447,9 +447,9 @@ const addMealPlan = async (req, res) => {
 
 The meal plan details are then sent to the frontend as a json response.
 
-![Image](https://github.com/Babajide777/grid-db-meal-planner/blog/images/2.jpg)
+![Image](/blog/images/2.jpg)
 
-![Image](https://github.com/Babajide777/grid-db-meal-planner/blog/images/3.jpg)
+![Image](/blog/images/3.jpg)
 
 ### Step 7: Get a Meal Plan Details
 
@@ -474,9 +474,9 @@ const mealPlanDetails = async (req, res) => {
 };
 ```
 
-![Image](https://github.com/Babajide777/grid-db-meal-planner/blog/images/4.jpg)
+![Image](/blog/images/4.jpg)
 
-![Image](https://github.com/Babajide777/grid-db-meal-planner/blog/images/5.jpg)
+![Image](/blog/images/5.jpg)
 
 ### Step 8: Edit a Meal Plan
 
@@ -556,7 +556,7 @@ const editByID = async (store, conInfo, data) => {
 
 ```
 
-![Image](https://github.com/Babajide777/grid-db-meal-planner/blog/images/6.jpg)
+![Image](/blog/images/6.jpg)
 
 ### Step 9: Delete a Meal Plan
 
@@ -592,9 +592,9 @@ const deleteByID = async (store, id, conInfo) => {
 };
 ```
 
-![Image](https://github.com/Babajide777/grid-db-meal-planner/blog/images/7.jpg)
+![Image](/blog/images/7.jpg)
 
-![Image](https://github.com/Babajide777/grid-db-meal-planner/blog/images/8.jpg)
+![Image](/blog/images/8.jpg)
 
 ### Step 10: Get List of All Meal Plans in the Database
 
@@ -645,9 +645,9 @@ async function queryAll(conInfo, store) {
 
 ```
 
-![Image](https://github.com/Babajide777/grid-db-meal-planner/blog/images/9.png)
+![Image](/blog/images/9.png)
 
-![Image](https://github.com/Babajide777/grid-db-meal-planner/blog/images/10.jpg)
+![Image](/blog/images/10.jpg)
 
 ## Conclusion
 
