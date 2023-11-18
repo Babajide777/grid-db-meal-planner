@@ -1,4 +1,4 @@
-### GRID DB MEAL PLANNER LIST APP
+### GRIDDB MEAL PLANNER APP
 
 This application contains 2 folders: **client** and **server**
 

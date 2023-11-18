@@ -22,7 +22,7 @@ In this article, we will use what is called the GERN stack (GridDB, ExpressJS, R
 
 GridDB can be used on any of the Windows, Linux, or Mac operating system.
 
-While I installed [WSL](https://learn.microsoft.com/en-us/windows/wsl/) (Windows Subsystem for Linux) on my Windows to have access to Linux (Ubuntu) on my machine, you could also follow along with this tutorial using Docker or MacOS. The [GridDB documentation](https://docs.griddb.net/latest/gettingstarted/wsl/) provides you with a detailed installation process to successfully install the database on your computer. There are also top-notch YouTube videos on their [YouTube channel](https://www.youtube.com/@GridDB) for those who prefer videos to written documentation. The entire code for the web application is available on [Github](https://www.youtube.com/@GridDB).
+While I installed [WSL](https://learn.microsoft.com/en-us/windows/wsl/) (Windows Subsystem for Linux) on my Windows to have access to Linux (Ubuntu) on my machine, you could also follow along with this tutorial using Docker or MacOS. The [GridDB documentation](https://docs.griddb.net/latest/gettingstarted/wsl/) provides you with a detailed installation process to successfully install the database on your computer. There are also top-notch YouTube videos on their [YouTube channel](https://www.youtube.com/@GridDB) for those who prefer videos to written documentation. The entire code for the web application is available on [Github](https://github.com/Babajide777/grid-db-meal-planner).
 
 Open your terminal and clone the repo using this command
 
@@ -42,48 +42,13 @@ To change to the meal planner app directory.
 
 This application is divided into 2 parts –
 
-1. The Frontend
-2. The Backend
+1. The Backend
+2. The Frontend
 
-## The Frontend
+## Prerequisites
 
-The beauty of this meal plan app is that the UI allows users to add, view, edit, and delete a meal plan. The following libraries were used to build the UI for this project:
-
-### [ReactJs](https://www.youtube.com/@GridDB):
-
-ReactJS is a JavaScript library built and maintained by Meta for building user interfaces.
-
-### [Material UI](https://mui.com/):
-
-Material UI is a comprehensive library of components from Google's Material Design system.
-
-### [Redux Toolkit](https://redux-toolkit.js.org/):
-
-Redux Toolkit is a state management library.
-
-To view the frontend of the app change to the client directory.
-
-```bash
-cd client
-```
-
-Now install the required dependencies
-
-```bash
-npm i
-```
-
-Then run the app using
-
-```bash
-npm start
-```
-
-![Home](https://github.com/Babajide777/grid-db-meal-planner/blob/main/client/src/components/assets/images/Gb-home.PNG?raw=true)
-
-The meal plan list page would show up.
-
-For those who want to build the frontend from scratch, the link to the [Figma](https://www.youtube.com/@GridDB) file has been provided.
+- GridDB version 5.3.0
+- Node v12.22.9
 
 ## The Backend
 
@@ -93,15 +58,15 @@ The proper CRUD functionalities are carried out in the app.
 
 These are the packages that are needed to build the backend.
 
-[ExpressJs](https://expressjs.com/): A minimalist NodeJS framework that is used for building RESTful APIs.
+- [ExpressJs](https://expressjs.com/): A minimalist NodeJS framework that is used for building RESTful APIs.
 
-[Morgan](https://www.npmjs.com/package/morgan): A NodeJS middleware that is used to log HTTP requests.
+- [Morgan](https://www.npmjs.com/package/morgan): A NodeJS middleware that is used to log HTTP requests.
 
-[GridDB Node API](https://github.com/griddb/node-api): The GridDB client for NodeJS
+- [GridDB Node API](https://github.com/griddb/node-api): The GridDB client for NodeJS
 
-[Joi](https://joi.dev/api/?v=17.9.1): A schema description language and data validator for JavaScript
+- [Joi](https://joi.dev/api/?v=17.9.1): A schema description language and data validator for JavaScript
 
-[UUID](https://www.npmjs.com/package/uuid): This package will be used to create a random ID.
+- [UUID](https://www.npmjs.com/package/uuid): This package will be used to create a random ID.
 
 ## Step-by-Step Guide to Building the Meal Plan App
 
@@ -648,6 +613,46 @@ async function queryAll(conInfo, store) {
 ![Image](/blog/images/9.png)
 
 ![Image](/blog/images/10.jpg)
+
+## The Frontend
+
+The beauty of this meal plan app is that the UI allows users to add, view, edit, and delete a meal plan. The following libraries were used to build the UI for this project:
+
+### [ReactJs](https://react.dev/):
+
+ReactJS is a JavaScript library built and maintained by Meta for building user interfaces.
+
+### [Material UI](https://mui.com/):
+
+Material UI is a comprehensive library of components from Google's Material Design system.
+
+### [Redux Toolkit](https://redux-toolkit.js.org/):
+
+Redux Toolkit is a state management library.
+
+To view the frontend of the app change to the client directory.
+
+```bash
+cd client
+```
+
+Now install the required dependencies
+
+```bash
+npm i
+```
+
+Then run the app using
+
+```bash
+npm start
+```
+
+![Home](https://github.com/Babajide777/grid-db-meal-planner/blob/main/client/src/components/assets/images/Gb-home.PNG?raw=true)
+
+The meal plan list page would show up.
+
+For those who want to build the UI from scratch, the link to the [Figma](https://www.figma.com/file/TZKMNuFYmIrhJX9k8xYpTL/Untitled?type=design&node-id=293%3A1074&mode=design&t=cWSzt3F22jHWmrwj-1) design file has been provided.
 
 ## Conclusion
 
